@@ -1,0 +1,10 @@
+# Build artifacts
+cub3D
+*.o
+/*.d
+# libft build artifacts
+libft/*.o
+libft/libft.a
+# editor/project files
+.vscode/
+.DS_Store
