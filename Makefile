@@ -8,7 +8,7 @@ INC_DIR = ./inc
 INCLUDES = -I$(INC_DIR)
 
 SRCS	= ./src/main.c ./src/parsing/parsing.c ./src/parsing/parsing_utils.c ./src/parsing/helper.c \
-			./src/parsing/extract.c ./src/parsing/extract_utils.c
+			./src/extract/extract.c ./src/extract/extract_utils.c ./src/extract/extract_utils2.c
 OBJS	= 	$(SRCS:%.c=%.o)
 
 LIBFT_DIR	= 	./libft

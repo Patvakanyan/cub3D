@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:51:08 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/14 19:16:05 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/12/14 19:53:15 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ bool				check_single_parameter(t_map *tmp, char *param,
 bool				pars_map(char *file, t_data *data);
 char				**extract_map(t_map **map);
 int					get_map_size(t_map *map);
+bool				has_cub_extension(char *file);
 bool				check_map_line(char **line);
+char				*replace_space_with_zero(char **row);
 #endif

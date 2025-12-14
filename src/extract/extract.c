@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:10:17 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/14 19:11:41 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/12/14 19:53:04 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**extract_ceiling_floor(t_map **map)
 	while ((*map) && (*map)->type == CEILING_FLOOR)
 	{
 		if (check_single_parameter((*map), (*map)->row[0], CEILING_FLOOR))
-			return (free(ret), ft_putstr_fd((*map)->row[0], 2), NULL);
+			return (free(ret), NULL);
 		ret[++counter] = ft_splitdup((*map)->row);
 		(*map) = (*map)->next;
 	}
@@ -43,14 +43,15 @@ char	**extract_wall(t_map **map)
 	counter = 0;
 	if ((*map)->type != WALL)
 		return (NULL);
-	ret = malloc(5 * sizeof(char *));
+	ret = ft_calloc(5, sizeof(char *));
 	if (!ret)
 		return (NULL);
 	ret[4] = NULL;
 	while ((*map) && (*map)->type == WALL)
 	{
-		if (check_single_parameter((*map), (*map)->row[0], WALL))
-			return (free_split(ret), ft_putstr_fd((*map)->row[0], 2), NULL);
+		if (!has_cub_extension((*map)->row[1]) || check_single_parameter((*map),
+				(*map)->row[0], WALL))
+			return (free_split(ret), NULL);
 		ret[counter] = ft_splitdup((*map)->row);
 		counter++;
 		(*map) = (*map)->next;
@@ -88,6 +89,7 @@ bool	extract(t_map *head, t_data *data)
 	}
 	return (true);
 }
+
 char	**extract_map(t_map **map)
 {
 	char	**ret;
@@ -106,14 +108,12 @@ char	**extract_map(t_map **map)
 	{
 		if (check_map_line((*map)->row) == false)
 			return (free_split(ret), ft_putstr_fd("error\n", 2), NULL);
-		ret[counter] = ft_splitdup((*map)->row);
+		ret[counter] = replace_space_with_zero((*map)->row);
 		counter++;
 		(*map) = (*map)->next;
 	}
 	return (ret);
 }
-
-
 
 bool	pars_map(char *file, t_data *data)
 {

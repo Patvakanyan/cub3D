@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:13:50 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/14 19:14:15 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/12/14 19:43:49 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	check_single_parameter(t_map *tmp, char *param, t_type type)
 	while (start)
 	{
 		if (start->type == type && ft_strcmp(start->row[0], param) == 0)
-			return (true);
+			return (ft_putstr_fd("has duplicates\n", 2), true);
 		start = start->next;
 	}
 	return (false);
@@ -65,12 +65,39 @@ int	get_map_size(t_map *map)
 	return (counter);
 }
 
+int	get_size_of_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split && split[i])
+		i++;
+	return (i);
+}
+
+bool	check_first_last_row(char *row)
+{
+	int	j;
+
+	j = -1;
+	while (row && row[++j])
+	{
+		if (row[j] != '1' && row[j] != ' ')
+			return (false);
+	}
+	return (true);
+}
+
 bool	check_map_line(char **line)
 {
 	int	i;
 	int	j;
+	int	size;
 
+	size = get_size_of_split(line);
 	i = -1;
+	if (!check_first_last_row(line[0]) || !check_first_last_row(line[size - 1]))
+		return (false);
 	while (line[++i])
 	{
 		j = -1;
