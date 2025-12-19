@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 19:22:50 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/13 17:37:10 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/12/18 19:16:12 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int	validate_file_open(char *file)
 {
-	int		fd;
-	char	*extension;
+	int	fd;
 
-	extension = ft_strrchr(file, '.');
-	if (!extension || ft_strcmp(extension, ".cub") != 0)
+	if (has_extension(file, ".cub", "file dont have .cub extension\n") == false)
+	{
+		ft_putstr_fd("file dont have .cub extension\n", 2);
 		return (-1);
+	}
 	fd = open(file, O_RDONLY);
 	return (fd);
 }
@@ -56,9 +57,15 @@ void	free_split(char **tmp)
 
 int	is_wall_row(char *row)
 {
+	char	**tmp;
 
-	if (!ft_strcmp(row, "NO") || !ft_strcmp(row, "SO")
-		|| !ft_strcmp(row, "WE") || !ft_strcmp(row, "EA"))
+	tmp = ft_split(row, ' ');
+	if (!ft_strcmp(tmp[0], "NO") || !ft_strcmp(tmp[0], "SO")
+		|| !ft_strcmp(tmp[0], "WE") || !ft_strcmp(tmp[0], "EA"))
+	{
+		free_split(tmp);
 		return (1);
+	}
+	free_split(tmp);
 	return (0);
 }

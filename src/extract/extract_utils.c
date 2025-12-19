@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:13:50 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/14 19:43:49 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/12/18 19:18:55 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,29 +75,12 @@ int	get_size_of_split(char **split)
 	return (i);
 }
 
-bool	check_first_last_row(char *row)
-{
-	int	j;
-
-	j = -1;
-	while (row && row[++j])
-	{
-		if (row[j] != '1' && row[j] != ' ')
-			return (false);
-	}
-	return (true);
-}
-
 bool	check_map_line(char **line)
 {
 	int	i;
 	int	j;
-	int	size;
 
-	size = get_size_of_split(line);
 	i = -1;
-	if (!check_first_last_row(line[0]) || !check_first_last_row(line[size - 1]))
-		return (false);
 	while (line[++i])
 	{
 		j = -1;

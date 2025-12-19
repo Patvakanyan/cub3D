@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:10:17 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/14 19:53:04 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/12/18 19:19:11 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ char	**extract_wall(t_map **map)
 	ret[4] = NULL;
 	while ((*map) && (*map)->type == WALL)
 	{
-		if (!has_cub_extension((*map)->row[1]) || check_single_parameter((*map),
-				(*map)->row[0], WALL))
+		if (!has_extension((*map)->row[1], ".ber",
+				"file dont have .ber extension\n")
+			|| check_single_parameter((*map), (*map)->row[0], WALL))
 			return (free_split(ret), NULL);
 		ret[counter] = ft_splitdup((*map)->row);
 		counter++;
@@ -126,7 +127,7 @@ bool	pars_map(char *file, t_data *data)
 		return (NULL);
 	map = give_list_map(fd);
 	if (!map)
-		return (close(fd), false);
+		return (free_list(map), close(fd), false);
 	tmp = map;
 	if (tmp->type == MAP || extract(tmp, data) == false)
 		return (free_list(map), close(fd), false);

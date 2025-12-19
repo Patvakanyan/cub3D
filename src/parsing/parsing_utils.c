@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 19:19:48 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/14 19:05:50 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/12/18 19:17:54 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,18 @@ char	*clean_new_line(char *row)
 t_map	*new_node(char *tmp)
 {
 	t_map	*new;
-	char *cleaned;
+	char	*cleaned;
 
 	new = malloc(sizeof(t_map));
 	if (!new)
 		return (NULL);
 	cleaned = clean_new_line(tmp);
-	new->row = ft_split(cleaned, ' ');
+	new->type = get_type(cleaned);
+	if (new->type != MAP)
+		new->row = ft_split(cleaned, ' ');
+	else
+		new->row = ft_split(cleaned, '\0');
 	free(cleaned);
-	new->type = get_type(new->row[0]);
 	new->next = NULL;
 	return (new);
 }
