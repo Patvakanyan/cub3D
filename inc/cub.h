@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:51:08 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/18 18:51:00 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/12/26 15:43:07 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <string.h>
-
+# include "mlx.h"
 typedef enum s_type
 {
 	WALL,
