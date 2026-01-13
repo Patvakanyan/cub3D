@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:10:17 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/18 19:19:11 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/12/27 19:56:22 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,50 @@ char	**extract_ceiling_floor(t_map **map)
 	return (ret);
 }
 
-char	**extract_wall(t_map **map)
+char **ft_splitcpy(char **str)
 {
 	char	**ret;
+	int		i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	ret = ft_calloc(i + 1, sizeof(char *));
+	if (!ret)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		ret[i] = ft_strdup(str[i]);
+		i++;
+	}
+	return (ret);
+}
+
+char	***extract_wall(t_map **map)
+{
+	char	***ret;
 	int		counter;
 
 	counter = 0;
 	if ((*map)->type != WALL)
 		return (NULL);
-	ret = ft_calloc(5, sizeof(char *));
+	ret = ft_calloc(5, sizeof(char **));
 	if (!ret)
 		return (NULL);
 	ret[4] = NULL;
 	while ((*map) && (*map)->type == WALL)
 	{
-		if (!has_extension((*map)->row[1], ".ber",
-				"file dont have .ber extension\n")
+		if (!has_extension((*map)->row[1], ".xpm",
+				"file dont have .xpm extension\n")
 			|| check_single_parameter((*map), (*map)->row[0], WALL))
-			return (free_split(ret), NULL);
-		ret[counter] = ft_splitdup((*map)->row);
+			return (free_split_all(ret), NULL);
+		ret[counter] = ft_splitcpy((*map)->row);
 		counter++;
 		(*map) = (*map)->next;
 	}
 	if (counter < 4)
-		return (free_split(ret), ft_putstr_fd("error", 2), NULL);
+		return (free_split_all(ret), ft_putstr_fd("error", 2), NULL);
 	return (ret);
 }
 
@@ -116,7 +136,7 @@ char	**extract_map(t_map **map)
 	return (ret);
 }
 
-bool	pars_map(char *file, t_data *data)
+bool	pars_map(char *file, t_game *game)
 {
 	t_map	*tmp;
 	t_map	*map;
@@ -129,7 +149,7 @@ bool	pars_map(char *file, t_data *data)
 	if (!map)
 		return (free_list(map), close(fd), false);
 	tmp = map;
-	if (tmp->type == MAP || extract(tmp, data) == false)
+	if (tmp->type == MAP || extract(tmp, game->data) == false)
 		return (free_list(map), close(fd), false);
 	free_list(map);
 	close(fd);
