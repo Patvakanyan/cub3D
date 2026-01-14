@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:13:50 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/27 22:07:08 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/14 23:55:35 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*ft_splitdup(char **str)
 		tmp = ft_strjoin(ret, str[i]);
 		if (ret)
 			free(ret);
+		tmp = ft_strjoin(tmp, " ");
 		ret = tmp;
 	}
 	return (ret);

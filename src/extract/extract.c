@@ -6,36 +6,76 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:10:17 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/27 19:56:22 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/15 00:04:22 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
 
-char	**extract_ceiling_floor(t_map **map)
+int	parse_color(char *color_str)
 {
-	char	**ret;
+	int		r;
+	int		g;
+	int		b;
+	char	**colors;
+	int		color;
+
+	printf("Parsing color string: %s\n", color_str);
+	colors = ft_split(color_str, ',');
+	if (!colors || !colors[0] || !colors[1] || !colors[2] || colors[3])
+	{
+		free_split(colors);
+		return (ft_putstr_fd("error\n", 2), -1);
+	}
+	printf("Parsing color from string: %s,%s,%s\n", colors[0], colors[1],
+		colors[2]);
+	r = ft_atoi(colors[0]);
+	g = ft_atoi(colors[1]);
+	b = ft_atoi(colors[2]);
+	free_split(colors);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		return (ft_putstr_fd("error\n", 2), -1);
+	color = (r << 16) | (g << 8) | b;
+	printf("Parsed color: R=%d, G=%d, B=%d, Color=%d\n", r, g, b, color);
+	return (color);
+}
+
+bool	extract_ceiling_floor(t_map **map, int *celling_color, int *floor_color)
+{
 	int		counter;
 
 	counter = -1;
+	(void)floor_color;
+	(void)celling_color;
 	if ((*map)->type != CEILING_FLOOR)
-		return (NULL);
-	ret = ft_calloc(3, sizeof(char *));
-	if (!ret)
-		return (NULL);
+		return (false);
 	while ((*map) && (*map)->type == CEILING_FLOOR)
 	{
 		if (check_single_parameter((*map), (*map)->row[0], CEILING_FLOOR))
-			return (free(ret), NULL);
-		ret[++counter] = ft_splitdup((*map)->row);
+			return (false);
+		++counter;
+		if (ft_strcmp((*map)->row[0], "C") == 0)
+		{
+			*celling_color = parse_color((*map)->row[1]);
+			if (*celling_color == -1)
+				return (false);
+		}
+		else if (ft_strcmp((*map)->row[0], "F") == 0)
+		{
+			*floor_color = parse_color((*map)->row[1]);
+			if (*floor_color == -1)
+				return (false);
+		}
+		else
+			return (ft_putstr_fd("error\n", 2), false);
 		(*map) = (*map)->next;
 	}
-	if (counter < 1)
-		return (free_split(ret), NULL);
-	return (ret);
+	if (counter != 1)
+		return (ft_putstr_fd("error\n", 2), false);
+	return (true);
 }
 
-char **ft_splitcpy(char **str)
+char	**ft_splitcpy(char **str)
 {
 	char	**ret;
 	int		i;
@@ -86,8 +126,8 @@ bool	extract(t_map *head, t_data *data)
 {
 	if (head->type == CEILING_FLOOR)
 	{
-		data->celling_floor = extract_ceiling_floor(&head);
-		if (!data->celling_floor)
+		if (extract_ceiling_floor(&head, &(data->celling_color),
+				&(data->floor_color)) == false)
 			return (false);
 		data->wall = extract_wall(&head);
 		if (!data->wall)
@@ -101,8 +141,8 @@ bool	extract(t_map *head, t_data *data)
 		data->wall = extract_wall(&head);
 		if (!data->wall)
 			return (false);
-		data->celling_floor = extract_ceiling_floor(&head);
-		if (!data->celling_floor)
+		if (extract_ceiling_floor(&head, &(data->celling_color),
+				&(data->floor_color)) == false)
 			return (false);
 		data->map = extract_map(&head);
 		if (!data->map)

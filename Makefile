@@ -1,6 +1,6 @@
 NAME	=	cub3D
 
-CC		=	cc
+CC = clang-19
 CFLAGS	= 	-Wall -Wextra -Werror -g3
 LDFLAGS	= 	-lreadline -lncurses $(MLX_LIB)
 
@@ -13,7 +13,7 @@ INCLUDES = -I$(INC_DIR) $(MLX_INC)
 
 SRCS	= ./src/main.c ./src/parsing/parsing.c ./src/parsing/parsing_utils.c ./src/parsing/helper.c \
 			./src/extract/extract.c ./src/extract/extract_utils.c ./src/extract/extract_utils2.c \
-			./src/helper/main_helper.c ./src/raycasting/raycasting.c
+			./src/helper/main_helper.c ./src/helper/hook_helper.c ./src/raycasting/raycasting.c
 
 OBJS	= 	$(SRCS:%.c=%.o)
 

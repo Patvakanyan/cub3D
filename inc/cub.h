@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:51:08 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/13 17:51:55 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/14 23:25:07 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # define W 1000
 # define H 1000
 # define KEY_ESC 65307
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
+# define KEY_W 1731
+# define KEY_A 1734
+# define KEY_S 1753
+# define KEY_D 1751
 # define TEX 64
 
 typedef struct s_img
@@ -90,7 +90,8 @@ typedef struct s_map
 typedef struct s_data
 {
 	char			**map;
-	char			**celling_floor;
+	int				celling_color;
+	int				floor_color;
 	char			***wall;
 }					t_data;
 
@@ -103,10 +104,15 @@ typedef struct s_game
 	t_player	player;
 	t_ray		ray;
 	t_data		*data;
+	bool		is_game_running;
 }	t_game;
 
+
+int		test_hook(int keycode, void *game);
+
+
 int					validate_file_open(char *file);
-int					render(t_game *game);
+int					render(void *game);
 bool				init_game(t_game *game);
 int					chek_row(char *tmp);
 int					get_type(char *tmp);
