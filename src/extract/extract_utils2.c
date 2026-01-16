@@ -6,11 +6,39 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:26:16 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/18 19:14:02 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:10:23 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../inc/tools.h"
+
+int	parse_color(char *color_str)
+{
+	int		r;
+	int		g;
+	int		b;
+	char	**colors;
+	int		color;
+
+	printf("Parsing color string: %s\n", color_str);
+	colors = ft_split(color_str, ',');
+	if (!colors || !colors[0] || !colors[1] || !colors[2] || colors[3])
+	{
+		free_split(colors);
+		return (ft_putstr_fd("error\n", 2), -1);
+	}
+	printf("Parsing color from string: %s,%s,%s\n", colors[0], colors[1],
+		colors[2]);
+	r = ft_atoi(colors[0]);
+	g = ft_atoi(colors[1]);
+	b = ft_atoi(colors[2]);
+	free_split(colors);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		return (ft_putstr_fd("error\n", 2), -1);
+	color = (r << 16) | (g << 8) | b;
+	printf("Parsed color: R=%d, G=%d, B=%d, Color=%d\n", r, g, b, color);
+	return (color);
+}
 
 bool	has_extension(char *file, char *extension, char *msg)
 {
@@ -35,5 +63,25 @@ char	*replace_space_with_zero(char **row)
 	while (ret[++i])
 		if (ret[i] == ' ')
 			ret[i] = '0';
+	return (ret);
+}
+
+char	**ft_splitcpy(char **str)
+{
+	char **ret;
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	ret = ft_calloc(i + 1, sizeof(char *));
+	if (!ret)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		ret[i] = ft_strdup(str[i]);
+		i++;
+	}
 	return (ret);
 }

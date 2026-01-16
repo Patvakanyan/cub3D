@@ -1,0 +1,100 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/15 18:44:47 by apatvaka          #+#    #+#             */
+/*   Updated: 2026/01/16 21:14:07 by apatvaka         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/init.h"
+
+bool	init_player(t_game *game)
+{
+	if (get_player_pos(game, &game->player.x, &game->player.y) == false)
+		return (false);
+	return (true);
+}
+
+static bool	set_texture_properties(t_game *game)
+{
+	game->texture[0].addr = mlx_get_data_addr(game->texture[0].img,
+			&game->texture[0].bpp, &game->texture[0].line_len,
+			&game->texture[0].endian);
+	game->texture[1].addr = mlx_get_data_addr(game->texture[1].img,
+			&game->texture[1].bpp, &game->texture[1].line_len,
+			&game->texture[1].endian);
+	game->texture[2].addr = mlx_get_data_addr(game->texture[2].img,
+			&game->texture[2].bpp, &game->texture[2].line_len,
+			&game->texture[2].endian);
+	game->texture[3].addr = mlx_get_data_addr(game->texture[3].img,
+			&game->texture[3].bpp, &game->texture[3].line_len,
+			&game->texture[3].endian);
+	if (!game->texture[0].addr || !game->texture[1].addr
+		|| !game->texture[2].addr || !game->texture[3].addr)
+		return (ft_putstr_fd("Error: Failed to get texture data\n", 2), false);
+	return (true);
+}
+
+static bool	init_img(t_game *game)
+{
+	game->texture[0].img = mlx_xpm_file_to_image(game->mlx,
+			game->data->wall[0][1], &game->texture[0].width,
+			&game->texture[0].height);
+	if (!game->texture[0].img)
+		return (false);
+	game->texture[1].img = mlx_xpm_file_to_image(game->mlx,
+			game->data->wall[1][1], &game->texture[1].width,
+			&game->texture[1].height);
+	if (!game->texture[1].img)
+		return (false);
+	game->texture[2].img = mlx_xpm_file_to_image(game->mlx,
+			game->data->wall[2][1], &game->texture[2].width,
+			&game->texture[2].height);
+	if (!game->texture[2].img)
+		return (false);
+	game->texture[3].img = mlx_xpm_file_to_image(game->mlx,
+			game->data->wall[3][1], &game->texture[3].width,
+			&game->texture[3].height);
+	if (!game->texture[3].img)
+		return (false);
+	if (set_texture_properties(game) == false)
+		return (false);
+	return (true);
+}
+
+bool	init_game(t_game *game)
+{
+	if (init_player(game) == false)
+		return (false);
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		return (false);
+	game->win = mlx_new_window(game->mlx, W, H, "Cub3D");
+	if (!game->win)
+		return (free(game->mlx), false);
+	game->img.img = mlx_new_image(game->mlx, W, H); // delete this line later
+	if (!game->img.img)
+		return (free(game->win), free(game->mlx), false);
+	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bpp,
+			&game->img.line_len, &game->img.endian);
+	if (init_img(game) == false)
+		return (false);
+	return (true);
+}
+
+void	init_ray(t_game *g, t_ray *r, int x)
+{
+	r->camera_x = 2.0 * x / (double)W - 1.0;
+	r->raydir_x = g->player.dir_x + g->player.plane_x * r->camera_x;
+	r->raydir_y = g->player.dir_y + g->player.plane_y * r->camera_x;
+	r->map_x = (int)g->player.x;
+	r->map_y = (int)g->player.y;
+	r->delta_x = fabs(1 / r->raydir_x);
+	r->delta_y = fabs(1 / r->raydir_y);
+	r->side = 0;
+	r->hit = 0;
+}

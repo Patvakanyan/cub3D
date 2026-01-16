@@ -6,19 +6,19 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:49:06 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/14 23:13:28 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/16 23:24:56 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../inc/tools.h"
 
-void	close_game(t_player *player)
+int	close_game(t_player *player)
 {
 	(void)player;
 	exit(0);
 }
 
-void	rotate_player(t_player *player, char direction)
+static void	rotate_player(t_player *player, char direction)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -26,10 +26,10 @@ void	rotate_player(t_player *player, char direction)
 
 	rot_speed = 0;
 	old_dir_x = player->dir_x;
-	if (direction == 'A') // Rotate left
-		rot_speed = -0.05;
+	if (direction == 'A')
+		rot_speed = -0.1;
 	else
-		rot_speed = 0.05;
+		rot_speed = 0.1;
 	player->dir_x = player->dir_x * cos(rot_speed) - player->dir_y
 		* sin(rot_speed);
 	player->dir_y = old_dir_x * sin(rot_speed) + player->dir_y * cos(rot_speed);
@@ -40,7 +40,7 @@ void	rotate_player(t_player *player, char direction)
 		* cos(rot_speed);
 }
 
-void	move_player(t_game *game, char direction)
+static void	move_player(t_game *game, char direction)
 {
 	double		move_speed;
 	double		new_x;
@@ -48,11 +48,9 @@ void	move_player(t_game *game, char direction)
 	t_player	*player;
 
 	player = &game->player;
-	move_speed = 0.05;
+	move_speed = 0.1;
 	new_x = player->x;
 	new_y = player->y;
-	printf("Player pos before move: y=%d, x=%d\n", (int)(new_y + player->dir_y),
-		(int)(new_x + player->dir_x));
 	if (direction == 'W' && game->data->map[(int)(new_y + player->dir_y
 			* move_speed)][(int)(new_x + player->dir_x * move_speed)] == '0')
 	{

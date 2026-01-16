@@ -6,27 +6,11 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/15 00:12:01 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/16 23:24:13 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
-
-// int	get_wall_texture(t_ray *r)
-// {
-// 	if (r->side == 0)
-// 	{
-// 		if (r->raydir_x > 0)
-// 			return (2); // WE
-// 		return (3); // EA
-// 	}
-// 	else
-// 	{
-// 		if (r->raydir_y > 0)
-// 			return (0); // NO
-// 		return (1); // SO
-// 	}
-// }
+#include "../inc/raycasting.h"
 
 void	put_pixel(t_img *img, int x, int y, int color)
 {
@@ -36,19 +20,6 @@ void	put_pixel(t_img *img, int x, int y, int color)
 		return ;
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
-}
-
-void	init_ray(t_game *g, t_ray *r, int x)
-{
-	r->camera_x = 2.0 * x / (double)W - 1.0;
-	r->raydir_x = g->player.dir_x + g->player.plane_x * r->camera_x;
-	r->raydir_y = g->player.dir_y + g->player.plane_y * r->camera_x;
-	r->map_x = (int)g->player.x;
-	r->map_y = (int)g->player.y;
-	r->delta_x = fabs(1 / r->raydir_x);
-	r->delta_y = fabs(1 / r->raydir_y);
-	r->side = 0;
-	r->hit = 0;
 }
 
 void	step_and_side(t_game *g, t_ray *r)
@@ -119,7 +90,7 @@ void	draw_column(t_game *g, t_ray *r, int x)
 	y = 0;
 	while (y < draw_start)
 	{
-		put_pixel(&g->img, x, y, 0x00ffc3);
+		put_pixel(&g->img, x, y, g->data->celling_color);
 		y++;
 	}
 	while (y < draw_end)

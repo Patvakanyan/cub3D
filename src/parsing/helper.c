@@ -6,11 +6,11 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 19:22:50 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/18 19:16:12 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:11:47 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../inc/tools.h"
 
 int	validate_file_open(char *file)
 {

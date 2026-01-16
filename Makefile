@@ -11,9 +11,21 @@ MLX_LIB = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 INC_DIR = ./inc
 INCLUDES = -I$(INC_DIR) $(MLX_INC)
 
-SRCS	= ./src/main.c ./src/parsing/parsing.c ./src/parsing/parsing_utils.c ./src/parsing/helper.c \
-			./src/extract/extract.c ./src/extract/extract_utils.c ./src/extract/extract_utils2.c \
-			./src/helper/main_helper.c ./src/helper/hook_helper.c ./src/raycasting/raycasting.c
+SRCS	=	./src/main.c \
+			./src/extract/extract.c \
+			./src/extract/extract_utils.c \
+			./src/extract/extract_utils2.c \
+			./src/helper/free_helper.c \
+			./src/helper/hook_helper.c \
+			./src/helper/init.c \
+			./src/helper/init_helper.c \
+			./src/helper/main_helper.c \
+			./src/parsing/helper.c \
+			./src/parsing/parsing.c \
+			./src/parsing/parsing_utils.c \
+			./src/raycasting/loop.c \
+			./src/raycasting/raycasting.c \
+
 
 OBJS	= 	$(SRCS:%.c=%.o)
 

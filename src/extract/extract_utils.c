@@ -6,11 +6,11 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:13:50 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/14 23:55:35 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/16 23:25:06 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../inc/tools.h"
 
 char	*ft_splitdup(char **str)
 {
@@ -66,15 +66,6 @@ int	get_map_size(t_map *map)
 	return (counter);
 }
 
-int	get_size_of_split(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split && split[i])
-		i++;
-	return (i);
-}
 
 bool	check_map_line(char **line)
 {

@@ -6,47 +6,18 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:10:17 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/15 00:04:22 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:12:03 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../inc/tools.h"
 
-int	parse_color(char *color_str)
+static bool	extract_ceiling_floor(t_map **map, int *celling_color,
+		int *floor_color)
 {
-	int		r;
-	int		g;
-	int		b;
-	char	**colors;
-	int		color;
-
-	printf("Parsing color string: %s\n", color_str);
-	colors = ft_split(color_str, ',');
-	if (!colors || !colors[0] || !colors[1] || !colors[2] || colors[3])
-	{
-		free_split(colors);
-		return (ft_putstr_fd("error\n", 2), -1);
-	}
-	printf("Parsing color from string: %s,%s,%s\n", colors[0], colors[1],
-		colors[2]);
-	r = ft_atoi(colors[0]);
-	g = ft_atoi(colors[1]);
-	b = ft_atoi(colors[2]);
-	free_split(colors);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return (ft_putstr_fd("error\n", 2), -1);
-	color = (r << 16) | (g << 8) | b;
-	printf("Parsed color: R=%d, G=%d, B=%d, Color=%d\n", r, g, b, color);
-	return (color);
-}
-
-bool	extract_ceiling_floor(t_map **map, int *celling_color, int *floor_color)
-{
-	int		counter;
+	int	counter;
 
 	counter = -1;
-	(void)floor_color;
-	(void)celling_color;
 	if ((*map)->type != CEILING_FLOOR)
 		return (false);
 	while ((*map) && (*map)->type == CEILING_FLOOR)
@@ -75,27 +46,7 @@ bool	extract_ceiling_floor(t_map **map, int *celling_color, int *floor_color)
 	return (true);
 }
 
-char	**ft_splitcpy(char **str)
-{
-	char	**ret;
-	int		i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	ret = ft_calloc(i + 1, sizeof(char *));
-	if (!ret)
-		return (NULL);
-	i = 0;
-	while (str[i])
-	{
-		ret[i] = ft_strdup(str[i]);
-		i++;
-	}
-	return (ret);
-}
-
-char	***extract_wall(t_map **map)
+static char	***extract_wall(t_map **map)
 {
 	char	***ret;
 	int		counter;
@@ -122,7 +73,32 @@ char	***extract_wall(t_map **map)
 	return (ret);
 }
 
-bool	extract(t_map *head, t_data *data)
+char	**extract_map(t_map **map)
+{
+	char	**ret;
+	int		counter;
+
+	if ((*map)->type != MAP)
+		return (NULL);
+	counter = get_map_size((*map));
+	if (counter == 0)
+		return (ft_putstr_fd("error\n", 2), NULL);
+	ret = ft_calloc(counter + 1, sizeof(char *));
+	if (!ret)
+		return (NULL);
+	counter = 0;
+	while ((*map) && (*map)->type == MAP)
+	{
+		if (check_map_line((*map)->row) == false)
+			return (free_split(ret), ft_putstr_fd("error\n", 2), NULL);
+		ret[counter] = replace_space_with_zero((*map)->row);
+		counter++;
+		(*map) = (*map)->next;
+	}
+	return (ret);
+}
+
+static bool	extract(t_map *head, t_data *data)
 {
 	if (head->type == CEILING_FLOOR)
 	{
@@ -149,31 +125,6 @@ bool	extract(t_map *head, t_data *data)
 			return (false);
 	}
 	return (true);
-}
-
-char	**extract_map(t_map **map)
-{
-	char	**ret;
-	int		counter;
-
-	if ((*map)->type != MAP)
-		return (NULL);
-	counter = get_map_size((*map));
-	if (counter == 0)
-		return (ft_putstr_fd("error\n", 2), NULL);
-	ret = ft_calloc(counter + 1, sizeof(char *));
-	if (!ret)
-		return (NULL);
-	counter = 0;
-	while ((*map) && (*map)->type == MAP)
-	{
-		if (check_map_line((*map)->row) == false)
-			return (free_split(ret), ft_putstr_fd("error\n", 2), NULL);
-		ret[counter] = replace_space_with_zero((*map)->row);
-		counter++;
-		(*map) = (*map)->next;
-	}
-	return (ret);
 }
 
 bool	pars_map(char *file, t_game *game)

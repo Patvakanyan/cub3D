@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 19:19:48 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/12/18 19:17:54 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:58:54 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,6 @@ t_map	*new_node(char *tmp)
 	free(cleaned);
 	new->next = NULL;
 	return (new);
-}
-
-void	free_list(t_map *list)
-{
-	t_map	*tmp;
-
-	if (!list)
-		return ;
-	while (list)
-	{
-		tmp = list->next;
-		free_split(list->row);
-		free(list);
-		list = tmp;
-	}
 }
 
 static t_map	*add_node(t_map **list, t_map *tail, char *row)
