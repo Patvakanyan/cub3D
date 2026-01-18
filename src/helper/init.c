@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:44:47 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/16 21:14:07 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/18 17:34:33 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 bool	init_player(t_game *game)
 {
+	game->player.move_speed = 0.1;
+	game->player.rot_speed = 0.1;
 	if (get_player_pos(game, &game->player.x, &game->player.y) == false)
 		return (false);
 	return (true);
@@ -76,7 +78,7 @@ bool	init_game(t_game *game)
 	game->win = mlx_new_window(game->mlx, W, H, "Cub3D");
 	if (!game->win)
 		return (free(game->mlx), false);
-	game->img.img = mlx_new_image(game->mlx, W, H); // delete this line later
+	game->img.img = mlx_new_image(game->mlx, W, H);
 	if (!game->img.img)
 		return (free(game->win), free(game->mlx), false);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bpp,

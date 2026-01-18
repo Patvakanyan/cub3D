@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:03:30 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/15 21:15:59 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/18 10:57:51 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_player
 	double			dir_y;
 	double			plane_x;
 	double			plane_y;
+	double			move_speed;
+	double			rot_speed;
 }					t_player;
 
 typedef struct s_ray
@@ -87,7 +89,6 @@ typedef struct s_game
 	t_player		player;
 	t_ray			ray;
 	t_data			*data;
-	bool			is_game_running;
 }					t_game;
 
 

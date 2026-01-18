@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/16 23:24:13 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/18 20:01:14 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,44 @@ void	dda(t_game *g, t_ray *r)
 			r->side = 1;
 		}
 		if (g->data->map[r->map_y][r->map_x] != '0')
-		{
 			r->hit = 1;
-		}
 	}
+}
+
+int	get_tex_color(t_img *tex, int tex_x, int tex_y)
+{
+	char	*pixel;
+
+	if (tex_x < 0 || tex_x >= tex->width || tex_y < 0 || tex_y >= tex->height)
+		return (0);
+	pixel = tex->addr + (tex_y * tex->line_len) + (tex_x * (tex->bpp / 8));
+	return (*(int *)pixel);
 }
 
 void	draw_column(t_game *g, t_ray *r, int x)
 {
-	int	line_h;
-	int	draw_start;
-	int	draw_end;
-	int	y;
+	int		line_h;
+	int		draw_start;
+	int		texture_color;
+	int		draw_end;
+	int		y;
+	int		tex_x;
+	int		tex_y;
+	double	wall_x;
+	double	tex_pos;
+	double	step;
 
 	if (r->side == 0)
+	{
 		r->perp_dist = r->side_dist_x - r->delta_x;
+		wall_x = g->player.y + r->perp_dist * r->raydir_y;
+	}
 	else
+	{
 		r->perp_dist = r->side_dist_y - r->delta_y;
+		wall_x = g->player.x + r->perp_dist * r->raydir_x;
+	}
+	wall_x -= floor(wall_x);
 	line_h = (int)(H / r->perp_dist);
 	draw_start = -line_h / 2 + H / 2;
 	if (draw_start < 0)
@@ -87,6 +108,9 @@ void	draw_column(t_game *g, t_ray *r, int x)
 	draw_end = line_h / 2 + H / 2;
 	if (draw_end >= H)
 		draw_end = H - 1;
+	tex_x = (int)(wall_x * g->texture[r->side].width);
+	step = 1.0 * g->texture[r->side].height / line_h;
+	tex_pos = (draw_start - H / 2 + line_h / 2) * step;
 	y = 0;
 	while (y < draw_start)
 	{
@@ -95,7 +119,10 @@ void	draw_column(t_game *g, t_ray *r, int x)
 	}
 	while (y < draw_end)
 	{
-		put_pixel(&g->img, x, y, r->side ? 0x00ff44 : 0xff1100);
+		tex_y = (int)tex_pos & (g->texture[r->side].height - 1);
+		texture_color = get_tex_color(&g->texture[r->side], tex_x, tex_y);
+		put_pixel(&g->img, x, y, texture_color);
+		tex_pos += step;
 		y++;
 	}
 	while (y < H)
@@ -124,6 +151,5 @@ int	render(void *ptr)
 	}
 	mlx_clear_window(game->mlx, game->win);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
-	game->is_game_running = false;
 	return (0);
 }
