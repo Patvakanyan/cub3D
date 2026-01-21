@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:57:36 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/16 23:25:00 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/21 11:35:22 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	free_list(t_map *list)
 
 void	free_game(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (!game)

@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:26:16 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/16 21:10:23 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/21 11:34:22 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ char	*replace_space_with_zero(char **row)
 
 char	**ft_splitcpy(char **str)
 {
-	char **ret;
-	int i;
+	int		i;
+	char	**ret;
 
 	i = 0;
 	while (str[i])

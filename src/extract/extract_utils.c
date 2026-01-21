@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:13:50 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/16 23:25:06 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/21 11:34:36 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	get_map_size(t_map *map)
 	}
 	return (counter);
 }
-
 
 bool	check_map_line(char **line)
 {

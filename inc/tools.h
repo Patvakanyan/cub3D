@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 16:11:28 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/17 18:33:23 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/21 12:33:01 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,18 @@ bool	check_map_line(char **line);
 char	**extract_map(t_map **map);
 int		is_wall_row(char *row);
 int		chek_row(char *tmp);
-int		validate_file_open(char *file);
-int		test_hook(int keycode, void *ptr);
+int		key_push(int keycode, void *ptr);
+void	move_player(t_game *game, char direction);
+void	move_character(t_game *game, int direction);
 
+int		validate_file_open(char *file);
 bool	get_player_pos(t_game *game, double *x, double *y);
+
+/* Raycasting helper functions */
+void	put_pixel(t_img *img, int x, int y, int color);
+void	step_and_side(t_game *g, t_ray *r);
+void	dda(t_game *g, t_ray *r);
+int		get_tex_color(t_img *tex, int tex_x, int tex_y);
 
 void	free_split(char **tmp);
 void	free_split_all(char ***split);

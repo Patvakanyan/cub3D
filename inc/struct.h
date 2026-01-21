@@ -6,14 +6,15 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:03:30 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/18 10:57:51 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/21 11:56:14 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-#include <stdbool.h>
+# include <stdbool.h>
+
 typedef struct s_img
 {
 	void			*img;
@@ -84,6 +85,7 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
+	int				move_flag;
 	t_img			img;
 	t_img			texture[4];
 	t_player		player;
@@ -91,5 +93,15 @@ typedef struct s_game
 	t_data			*data;
 }					t_game;
 
+typedef enum e_move
+{
+	MOVE_NONE,
+	ROTATE_LEFT,
+	ROTATE_RIGHT,
+	MOVE_LEFT,
+	MOVE_RIGHT,
+	MOVE_DOWN,
+	MOVE_UP
+}					t_move;
 
 #endif

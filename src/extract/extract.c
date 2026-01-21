@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:10:17 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/16 21:12:03 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/21 12:10:27 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ bool	pars_map(char *file, t_game *game)
 		return (free_list(map), close(fd), false);
 	tmp = map;
 	if (tmp->type == MAP || extract(tmp, game->data) == false)
-		return (free_list(map), close(fd), false);
+		return (free_list(map), close(fd), ft_putstr_fd("error\n", 2), false);
 	free_list(map);
 	close(fd);
 	return (true);

@@ -20,6 +20,8 @@ SRCS	=	./src/main.c \
 			./src/helper/init.c \
 			./src/helper/init_helper.c \
 			./src/helper/main_helper.c \
+			./src/helper/move_helper.c \
+			./src/helper/raycasting_helper.c \
 			./src/parsing/helper.c \
 			./src/parsing/parsing.c \
 			./src/parsing/parsing_utils.c \

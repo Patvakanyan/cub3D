@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:44:47 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/18 17:34:33 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/21 12:11:20 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ static bool	set_texture_properties(t_game *game)
 
 static bool	init_img(t_game *game)
 {
+	if (!game->data || !game->data->wall)
+		return (ft_putstr_fd("Error: Wall textures not initialized\n", 2),
+			false);
 	game->texture[0].img = mlx_xpm_file_to_image(game->mlx,
 			game->data->wall[0][1], &game->texture[0].width,
 			&game->texture[0].height);
@@ -70,6 +73,7 @@ static bool	init_img(t_game *game)
 
 bool	init_game(t_game *game)
 {
+	game->move_flag = 0;
 	if (init_player(game) == false)
 		return (false);
 	game->mlx = mlx_init();
