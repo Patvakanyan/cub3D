@@ -3,8 +3,8 @@ F 6,171,0
 
 NO ./texturs/kargin.xpm
 SO ./texturs/flag.xpm
-EA ./texturs/test.xpm
-WE ./texturs/test.xpm
+EA ./texturs/images_64x64.xpm
+WE ./texturs/bodo.xpm
 
 
 

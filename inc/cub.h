@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:51:08 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/21 11:35:44 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/23 22:44:32 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@
 # define KEY_D 1751
 # define TEX 64
 
+/* ========== GAME LIFECYCLE FUNCTIONS ========== */
 int		close_game(t_player *player);
+
+/* ========== FILE/PARSING FUNCTIONS ========== */
 int		validate_file_open(char *file);
 int		get_type(char *tmp);
 t_map	*give_list_map(int fd);

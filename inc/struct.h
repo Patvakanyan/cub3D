@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:03:30 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/21 11:56:14 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/23 22:53:55 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_ray
 	int				step_y;
 	int				hit;
 	int				side;
+	int				wall_dir;
 }					t_ray;
 
 typedef enum s_type
