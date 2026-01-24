@@ -6,12 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:28:33 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 15:06:49 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:37:44 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parser.h"
-
 
 t_config	*parse_configs(int fd)
 {

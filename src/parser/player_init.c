@@ -6,13 +6,13 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 02:08:55 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 15:06:56 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:40:06 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parser.h"
 
-void	init_player_dir(t_player *p, char c)
+static void	init_north_south(t_player *p, char c)
 {
 	if (c == 'N')
 	{
@@ -28,7 +28,11 @@ void	init_player_dir(t_player *p, char c)
 		p->plane_x = -0.66;
 		p->plane_y = 0;
 	}
-	else if (c == 'E')
+}
+
+static void	init_east_west(t_player *p, char c)
+{
+	if (c == 'E')
 	{
 		p->dir_x = 1;
 		p->dir_y = 0;
@@ -42,4 +46,12 @@ void	init_player_dir(t_player *p, char c)
 		p->plane_x = 0;
 		p->plane_y = -0.66;
 	}
+}
+
+void	init_player_dir(t_player *p, char c)
+{
+	if (c == 'N' || c == 'S')
+		init_north_south(p, c);
+	else if (c == 'W' || c == 'W')
+		init_east_west(p, c);
 }

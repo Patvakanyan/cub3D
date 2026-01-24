@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 16:27:04 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:41:31 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	draw_column(t_game *g, t_ray *r, int x)
 int	render(void *ptr)
 {
 	int		x;
-	t_game	*game;
 	t_ray	r;
+	t_game	*game;
 
 	x = 0;
 	game = (t_game *)ptr;

@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:57:36 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/23 22:09:53 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:41:16 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_game(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (!game)

@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:49:06 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 16:14:27 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:41:03 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	close_game(t_game *game)
 	free_game(game);
 	exit(0);
 }
+
 static void	rotate_player(t_player *player, char *direction)
 {
 	double	old_dir_x;

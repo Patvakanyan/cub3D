@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 12:28:04 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 16:23:31 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:40:33 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	dda(t_game *game, t_ray *ray)
 
 int	get_tex_color(t_img *tex, int tex_x, int tex_y)
 {
-	char *pixel;
+	char	*pixel;
 
 	if (tex_x < 0 || tex_x >= tex->width || tex_y < 0 || tex_y >= tex->height)
 		return (0);
