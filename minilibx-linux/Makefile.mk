@@ -14,7 +14,7 @@
 INC	=%%%%
 
 UNAME = $(shell uname)
-CC = clang-19
+CC = cc
 
 NAME		= libmlx.a
 NAME_UNAME	= libmlx_$(UNAME).a

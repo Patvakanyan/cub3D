@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   move_helper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 12:20:17 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 13:23:41 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:16:37 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/tools.h"
+#include "../../inc/tools.h"
 
 static void	move_strafe_left(t_game *game, t_player *player, double move_speed)
 {
@@ -19,7 +19,7 @@ static void	move_strafe_left(t_game *game, t_player *player, double move_speed)
 
 	new_x = player->x - player->plane_x * move_speed;
 	new_y = player->y - player->plane_y * move_speed;
-	if (game->data->map[(int)new_y][(int)new_x] == '0')
+	if (game->config->map->map[(int)new_y][(int)new_x] == '0')
 	{
 		player->x = new_x;
 		player->y = new_y;
@@ -33,7 +33,7 @@ static void	move_strafe_right(t_game *game, t_player *player, double move_speed)
 
 	new_x = player->x + player->plane_x * move_speed;
 	new_y = player->y + player->plane_y * move_speed;
-	if (game->data->map[(int)new_y][(int)new_x] == '0')
+	if (game->config->map->map[(int)new_y][(int)new_x] == '0')
 	{
 		player->x = new_x;
 		player->y = new_y;
@@ -47,7 +47,7 @@ static void	move_forward(t_game *game, t_player *player, double move_speed)
 
 	new_x = player->x + player->dir_x * move_speed;
 	new_y = player->y + player->dir_y * move_speed;
-	if (game->data->map[(int)(new_y)][(int)(new_x)] == '0')
+	if (game->config->map->map[(int)(new_y)][(int)(new_x)] == '0')
 	{
 		player->x = new_x;
 		player->y = new_y;
@@ -61,7 +61,7 @@ static void	move_backward(t_game *game, t_player *player, double move_speed)
 
 	new_x = player->x - player->dir_x * move_speed;
 	new_y = player->y - player->dir_y * move_speed;
-	if (game->data->map[(int)(new_y)][(int)(new_x)] == '0')
+	if (game->config->map->map[(int)(new_y)][(int)(new_x)] == '0')
 	{
 		player->x = new_x;
 		player->y = new_y;

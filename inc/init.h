@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 12:22:38 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/23 22:44:32 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:13:01 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,9 @@
 # include "./cub.h"
 # include "./struct.h"
 
-/* ========== GAME INITIALIZATION FUNCTIONS ========== */
-void	set_game_defaults(t_game *game);
+void	set_game_defaults(t_game *game, int fd);
+bool	init_player(t_game *game);
+void	init_ray(t_game *g, t_ray *r, int x);
 bool	init_game(t_game *game);
 
-/* ========== PLAYER INITIALIZATION FUNCTIONS ========== */
-bool	init_player(t_game *game);
-
-/* ========== RAY INITIALIZATION FUNCTIONS ========== */
-void	init_ray(t_game *g, t_ray *r, int x);
 #endif

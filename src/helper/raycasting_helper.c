@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_helper.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 12:28:04 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/21 12:28:38 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:16:51 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/tools.h"
+#include "../../inc/tools.h"
 
 void	put_pixel(t_img *img, int x, int y, int color)
 {
@@ -46,30 +46,30 @@ void	step_and_side(t_game *g, t_ray *r)
 	}
 }
 
-void	dda(t_game *g, t_ray *r)
+void	dda(t_game *game, t_ray *ray)
 {
-	while (!r->hit)
+	while (!ray->hit)
 	{
-		if (r->side_dist_x < r->side_dist_y)
+		if (ray->side_dist_x < ray->side_dist_y)
 		{
-			r->side_dist_x += r->delta_x;
-			r->map_x += r->step_x;
-			r->side = 0;
+			ray->side_dist_x += ray->delta_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
 		}
 		else
 		{
-			r->side_dist_y += r->delta_y;
-			r->map_y += r->step_y;
-			r->side = 1;
+			ray->side_dist_y += ray->delta_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
 		}
-		if (g->data->map[r->map_y][r->map_x] != '0')
-			r->hit = 1;
+		if (game->config->map->map[ray->map_y][ray->map_x] != '0')
+			ray->hit = 1;
 	}
 }
 
 int	get_tex_color(t_img *tex, int tex_x, int tex_y)
 {
-	char *pixel;
+	char	*pixel;
 
 	if (tex_x < 0 || tex_x >= tex->width || tex_y < 0 || tex_y >= tex->height)
 		return (0);

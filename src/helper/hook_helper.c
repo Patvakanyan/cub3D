@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   hook_helper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:49:06 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 13:49:11 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:15:15 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/tools.h"
+#include "../../inc/tools.h"
 
-int	close_game(t_player *player)
+int	close_game(t_game *game)
 {
-	(void)player;
+	free_game(game);
 	exit(0);
 }
 
@@ -58,7 +58,7 @@ void	move_forward_backward(t_game *game, char direction)
 		new_x -= player->dir_x * game->player.move_speed;
 		new_y -= player->dir_y * game->player.move_speed;
 	}
-	if (game->data->map[(int)(new_y)][(int)(new_x)] == '0')
+	if (game->config->map->map[(int)(new_y)][(int)(new_x)] == '0')
 	{
 		player->x = new_x;
 		player->y = new_y;

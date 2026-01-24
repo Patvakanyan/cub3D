@@ -3,14 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 20:11:21 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/21 12:23:56 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:17:07 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/raycasting.h"
+#include "../../inc/raycasting.h"
+
+int	key_release(int keycode, void *ptr)
+{
+	t_game	*game;
+
+	game = (t_game *)ptr;
+	if (keycode == KEY_LEFT)
+		game->move_flag = -1;
+	if (keycode == KEY_RIGHT)
+		game->move_flag = -1;
+	if (keycode == KEY_A)
+		game->move_flag = -1;
+	if (keycode == KEY_D)
+		game->move_flag = -1;
+	if (keycode == KEY_S)
+		game->move_flag = -1;
+	if (keycode == KEY_W)
+		game->move_flag = -1;
+	return (1);
+}
+
+int	key_push(int keycode, void *ptr)
+{
+	t_game	*game;
+
+	game = (t_game *)ptr;
+	if (keycode == KEY_ESC)
+		close_game(game);
+	if (keycode == KEY_LEFT)
+		game->move_flag = ROTATE_LEFT;
+	if (keycode == KEY_RIGHT)
+		game->move_flag = ROTATE_RIGHT;
+	if (keycode == KEY_A)
+		game->move_flag = MOVE_LEFT;
+	if (keycode == KEY_D)
+		game->move_flag = MOVE_RIGHT;
+	if (keycode == KEY_S)
+		game->move_flag = MOVE_DOWN;
+	if (keycode == KEY_W)
+		game->move_flag = MOVE_UP;
+	return (0);
+}
 
 int	key_release(int keycode, void *ptr)
 {

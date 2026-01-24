@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:03:30 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 13:38:01 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:14:15 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define STRUCT_H
 
 # include <stdbool.h>
+# include "./parser.h"
+
+typedef struct s_config	t_config;
 
 typedef struct s_img
 {
@@ -60,38 +63,17 @@ typedef struct s_ray
 	int				wall_dir;
 }					t_ray;
 
-typedef enum s_type
-{
-	WALL,
-	CEILING_FLOOR,
-	MAP
-}					t_type;
-
-typedef struct s_map
-{
-	char			**row;
-	t_type			type;
-	struct s_map	*next;
-}					t_map;
-
-typedef struct s_data
-{
-	char			**map;
-	int				ceiling_color;
-	int				floor_color;
-	char			***wall;
-}					t_data;
-
 typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
 	int				move_flag;
+	int				fd;
 	t_img			img;
 	t_img			texture[4];
 	t_player		player;
 	t_ray			ray;
-	t_data			*data;
+	t_config		*config;
 }					t_game;
 
 typedef enum e_move

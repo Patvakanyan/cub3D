@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:44:47 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 13:48:26 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:16:08 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/init.h"
+#include "../../inc/init.h"
 
 bool	init_player(t_game *game)
 {
-	game->player.move_speed = 0.1;
-	if (get_player_pos(game, &game->player.x, &game->player.y) == false)
+	if (!game)
 		return (false);
+	game->player.move_speed = 0.1;
+	game->player.rot_speed = 0.1;
 	return (true);
 }
 
@@ -36,41 +37,38 @@ static bool	set_texture_properties(t_game *game)
 			&game->texture[3].endian);
 	if (!game->texture[0].addr || !game->texture[1].addr
 		|| !game->texture[2].addr || !game->texture[3].addr)
-		return (ft_putstr_fd("Error: Failed to get texture data\n", 2), false);
+		return (ft_putstr_fd("Error: Failed to get texture data.\n", 2), false);
 	return (true);
 }
 
 static bool	init_img(t_game *game)
 {
 	game->texture[0].img = mlx_xpm_file_to_image(game->mlx,
-			game->data->wall[0][1], &game->texture[0].width,
+			game->config->north, &game->texture[0].width,
 			&game->texture[0].height);
 	if (!game->texture[0].img)
 		return (false);
 	game->texture[1].img = mlx_xpm_file_to_image(game->mlx,
-			game->data->wall[1][1], &game->texture[1].width,
+			game->config->south, &game->texture[1].width,
 			&game->texture[1].height);
 	if (!game->texture[1].img)
 		return (false);
 	game->texture[2].img = mlx_xpm_file_to_image(game->mlx,
-			game->data->wall[2][1], &game->texture[2].width,
+			game->config->west, &game->texture[2].width,
 			&game->texture[2].height);
 	if (!game->texture[2].img)
 		return (false);
 	game->texture[3].img = mlx_xpm_file_to_image(game->mlx,
-			game->data->wall[3][1], &game->texture[3].width,
+			game->config->east, &game->texture[3].width,
 			&game->texture[3].height);
 	if (!game->texture[3].img)
 		return (false);
-	if (set_texture_properties(game) == false)
-		return (false);
-	return (true);
+	return (set_texture_properties(game));
 }
 
 bool	init_game(t_game *game)
 {
-	game->move_flag = 0;
-	if (init_player(game) == false)
+	if (!init_player(game))
 		return (false);
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -83,9 +81,7 @@ bool	init_game(t_game *game)
 		return (free(game->win), free(game->mlx), false);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bpp,
 			&game->img.line_len, &game->img.endian);
-	if (init_img(game) == false)
-		return (false);
-	return (true);
+	return (init_img(game));
 }
 
 void	init_ray(t_game *g, t_ray *r, int x)

@@ -1,6 +1,6 @@
 NAME	=	cub3D
 
-CC = clang-19
+CC = cc
 CFLAGS	= 	-Wall -Wextra -Werror -g3
 LDFLAGS	= 	-lreadline -lncurses $(MLX_LIB)
 
@@ -12,22 +12,34 @@ INC_DIR = ./inc
 INCLUDES = -I$(INC_DIR) $(MLX_INC)
 
 SRCS	=	./src/main.c \
-			./src/extract/extract.c \
-			./src/extract/extract_utils.c \
-			./src/extract/extract_utils2.c \
 			./src/helper/free_helper.c \
 			./src/helper/hook_helper.c \
 			./src/helper/init.c \
 			./src/helper/init_helper.c \
+<<<<<<< HEAD
 			./src/helper/main_helper.c \
 			./src/helper/move_helper.c \
 			./src/helper/raycasting_helper.c \
 			./src/parsing/helper.c \
 			./src/parsing/parsing.c \
 			./src/parsing/parsing_utils.c \
+=======
+			./src/helper/move_helper.c \
+			./src/helper/raycasting_helper.c \
+>>>>>>> debug
 			./src/raycasting/loop.c \
 			./src/raycasting/raycasting.c \
-
+			./src/parser/checkers.c \
+			./src/parser/dealloc_funcs.c \
+			./src/parser/init.c \
+			./src/parser/map_parser.c \
+			./src/parser/parser_helpers.c \
+			./src/parser/parser.c \
+			./src/parser/player_init.c \
+			./src/parser/utils.c \
+			./src/parser/validation_checkers.c \
+			./src/parser/validation_helpers.c \
+			./src/parser/validation.c
 
 OBJS	= 	$(SRCS:%.c=%.o)
 

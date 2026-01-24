@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 13:47:07 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:17:21 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/raycasting.h"
+#include "../../inc/raycasting.h"
 
 void	draw_column(t_game *g, t_ray *r, int x)
 {
@@ -57,7 +57,7 @@ void	draw_column(t_game *g, t_ray *r, int x)
 	y = 0;
 	while (y < draw_start)
 	{
-		put_pixel(&g->img, x, y, g->data->ceiling_color);
+		put_pixel(&g->img, x, y, g->config->ceiling);
 		y++;
 	}
 	while (y < draw_end)
@@ -70,7 +70,7 @@ void	draw_column(t_game *g, t_ray *r, int x)
 	}
 	while (y < H)
 	{
-		put_pixel(&g->img, x, y, g->data->floor_color);
+		put_pixel(&g->img, x, y, g->config->floor);
 		y++;
 	}
 }
@@ -78,8 +78,8 @@ void	draw_column(t_game *g, t_ray *r, int x)
 int	render(void *ptr)
 {
 	int		x;
-	t_game	*game;
 	t_ray	r;
+	t_game	*game;
 
 	x = 0;
 	game = (t_game *)ptr;

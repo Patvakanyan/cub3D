@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:51:08 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/23 22:44:32 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:12:35 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,12 @@
 # define KEY_ESC 65307
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
-# define KEY_W 1731
-# define KEY_A 1734
-# define KEY_S 1753
-# define KEY_D 1751
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
 # define TEX 64
 
-/* ========== GAME LIFECYCLE FUNCTIONS ========== */
-int		close_game(t_player *player);
-
-/* ========== FILE/PARSING FUNCTIONS ========== */
-int		validate_file_open(char *file);
-int		get_type(char *tmp);
-t_map	*give_list_map(int fd);
+int	close_game(t_game *game);
 
 #endif
