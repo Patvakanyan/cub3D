@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:50:53 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 15:12:16 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:33:54 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void	set_game_defaults(t_game *game, int fd)
 	game->player.plane_x = 0.0;
 	game->player.plane_y = 0.66;
 	game->fd = fd;
+	game->move_flag = -1;
 	init_texture_defaults(game);
 }
