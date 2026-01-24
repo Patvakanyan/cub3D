@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   hook_helper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:49:06 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/18 12:43:04 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:28:28 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/tools.h"
+#include "../../inc/tools.h"
 
-int	close_game(t_player *player)
+int	close_game(t_game *game)
 {
-	(void)player;
+	free_game(game);
 	exit(0);
 }
 
@@ -53,7 +53,8 @@ static void	move_player(t_game *game, char direction)
 	{
 		new_x = player->x - player->dir_y * move_speed;
 		new_y = player->y + player->dir_x * move_speed;
-		if (game->data->map[(int)(new_y)][(int)(new_x)] == '0')
+		printf("zibil1 == [%d]\n",game->config->map->map[(int)(new_y)][(int)(new_x)]);
+		if (game->config->map->map[(int)(new_y)][(int)(new_x)] == '0')
 		{
 			player->x = new_x;
 			player->y = new_y;
@@ -65,7 +66,7 @@ static void	move_player(t_game *game, char direction)
 	{
 		new_x = player->x + player->dir_y * move_speed;
 		new_y = player->y - player->dir_x * move_speed;
-		if (game->data->map[(int)(new_y)][(int)(new_x)] == '0')
+		if (game->config->map->map[(int)(new_y)][(int)(new_x)] == '0')
 		{
 			player->x = new_x;
 			player->y = new_y;
@@ -77,7 +78,7 @@ static void	move_player(t_game *game, char direction)
 	{
 		new_x += player->dir_x * move_speed;
 		new_y += player->dir_y * move_speed;
-		if (game->data->map[(int)(new_y)][(int)(new_x)] == '0')
+		if (game->config->map->map[(int)(new_y)][(int)(new_x)] == '0')
 		{
 			player->x = new_x;
 			player->y = new_y;
@@ -87,7 +88,7 @@ static void	move_player(t_game *game, char direction)
 	{
 		new_x -= player->dir_x * move_speed;
 		new_y -= player->dir_y * move_speed;
-		if (game->data->map[(int)(new_y)][(int)(new_x)] == '0')
+		if (game->config->map->map[(int)(new_y)][(int)(new_x)] == '0')
 		{
 			player->x = new_x;
 			player->y = new_y;
@@ -108,7 +109,7 @@ void move_forward_backward(t_game *game, char direction)
 	{
 		new_x += player->dir_x * game->player.move_speed;
 		new_y += player->dir_y * game->player.move_speed;
-		if (game->data->map[(int)(new_y)][(int)(new_x)] == '0')
+		if (game->config->map->map[(int)(new_y)][(int)(new_x)] == '0')
 		{
 			player->x = new_x;
 			player->y = new_y;
@@ -118,7 +119,7 @@ void move_forward_backward(t_game *game, char direction)
 	{
 		new_x -= player->dir_x * game->player.move_speed;
 		new_y -= player->dir_y * game->player.move_speed;
-		if (game->data->map[(int)(new_y)][(int)(new_x)] == '0')
+		if (game->config->map->map[(int)(new_y)][(int)(new_x)] == '0')
 		{
 			player->x = new_x;
 			player->y = new_y;
@@ -131,8 +132,9 @@ int	test_hook(int keycode, void *ptr)
 	t_game	*game;
 
 	game = (t_game *)ptr;
+	printf("test key = %d\n", keycode);
 	if (keycode == KEY_ESC)
-		close_game(&game->player);
+		close_game(game);
 	if (keycode == KEY_LEFT)
 		rotate_player(&game->player, "left");
 	if (keycode == KEY_RIGHT)

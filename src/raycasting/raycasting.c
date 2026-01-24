@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/18 20:01:14 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:11:45 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	dda(t_game *g, t_ray *r)
 			r->map_y += r->step_y;
 			r->side = 1;
 		}
-		if (g->data->map[r->map_y][r->map_x] != '0')
+		if (g->config->map->map[r->map_y][r->map_x] != '0')
 			r->hit = 1;
 	}
 }
@@ -114,7 +114,7 @@ void	draw_column(t_game *g, t_ray *r, int x)
 	y = 0;
 	while (y < draw_start)
 	{
-		put_pixel(&g->img, x, y, g->data->celling_color);
+		put_pixel(&g->img, x, y, g->config->ceiling);
 		y++;
 	}
 	while (y < draw_end)
@@ -127,7 +127,7 @@ void	draw_column(t_game *g, t_ray *r, int x)
 	}
 	while (y < H)
 	{
-		put_pixel(&g->img, x, y, g->data->floor_color);
+		put_pixel(&g->img, x, y, g->config->floor);
 		y++;
 	}
 }

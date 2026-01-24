@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_helper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:50:53 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/16 23:24:47 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:12:16 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../inc/init.h"
+#include "../../inc/init.h"
 
 static void	init_texture_defaults(t_game *game)
 {
@@ -31,16 +31,17 @@ static void	init_texture_defaults(t_game *game)
 	}
 }
 
-void	set_game_defaults(t_game *game)
+void	set_game_defaults(t_game *game, int fd)
 {
 	game->mlx = NULL;
 	game->win = NULL;
-	game->data = NULL;
+	game->config = NULL;
 	game->player.x = 0.0;
 	game->player.y = 0.0;
 	game->player.dir_x = 0;
 	game->player.dir_y = 0.0;
 	game->player.plane_x = 0.0;
 	game->player.plane_y = 0.66;
+	game->fd = fd;
 	init_texture_defaults(game);
 }

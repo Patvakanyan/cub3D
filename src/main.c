@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:49:32 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/15 20:22:28 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:13:05 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,25 @@
 
 int	main(int argc, char **argv)
 {
+	int		fd;
 	t_game	game;
 
-	set_game_defaults(&game);
-	game.data = ft_calloc(1, sizeof(t_data));
-	if (!game.data)
-		return (1);
 	if (argc != 2)
-		return (ft_putstr_fd("Error: Invalid number of arguments\n", 2),
-			free(game.data), 1);
-	if (pars_map(argv[1], &game) == false)
-		return (free_data(game.data), 1);
-	if (init_game(&game) == 0)
-		return (free_game(&game), 1);
-	start_game_loop(&game);
-	free_game(&game);
-	return (0);
+		return (ft_putstr_fd(ARGC_ERROR, 2), 1);
+	if (!check_file_extension(&argv[1], ".cub"))
+		return (ft_putstr_fd(CUB_EXTENSION_ERR, 2), 1);
+	fd = open(argv[1], O_RDONLY);
+	if (fd >= 0)
+	{
+		set_game_defaults(&game, fd);
+		game.config = parse_configs(fd);
+		if (!game.config)
+			return (close(fd), ft_putstr_fd(ALLOC_ERR, 2), 1);
+		if (!validate_configs(&game))
+			return (close(fd), free_configs(game.config), 1);
+		if (!init_game(&game))
+			return (close(fd), free_game(&game), 1);
+		start_game_loop(&game);
+	}
+	return (ft_putstr_fd(FD_ERROR, 2), 1);
 }

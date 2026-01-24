@@ -3,54 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free_helper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:57:36 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/16 23:25:00 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/23 22:09:53 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/tools.h"
-
-void	free_split_all(char ***split)
-{
-	int	i;
-
-	i = -1;
-	if (!split)
-		return ;
-	while (split[++i])
-		free_split(split[i]);
-	free(split);
-	split = NULL;
-}
-
-void	free_data(t_data *data)
-{
-	if (!data)
-		return ;
-	if (data->map)
-		free_split(data->map);
-	if (data->wall)
-		free_split_all(data->wall);
-	free(data);
-	data = NULL;
-}
-
-void	free_list(t_map *list)
-{
-	t_map	*tmp;
-
-	if (!list)
-		return ;
-	while (list)
-	{
-		tmp = list->next;
-		free_split(list->row);
-		free(list);
-		list = tmp;
-	}
-}
+#include "../../inc/tools.h"
 
 void	free_game(t_game *game)
 {
@@ -71,8 +31,10 @@ void	free_game(t_game *game)
 	}
 	if (game->mlx)
 	{
+		mlx_destroy_image(game->mlx, game->img.img);
+		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 		game->mlx = NULL;
 	}
-	free_data(game->data);
+	free_configs(game->config);
 }
