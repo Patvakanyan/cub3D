@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:44:47 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 15:35:53 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:16:45 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static bool	set_texture_properties(t_game *game)
 			&game->texture[3].endian);
 	if (!game->texture[0].addr || !game->texture[1].addr
 		|| !game->texture[2].addr || !game->texture[3].addr)
-		return (ft_putstr_fd("Error: Failed to get texture data\n", 2), false);
+		return (ft_putstr_fd("Error: Failed to get texture data.\n", 2), false);
 	return (true);
 }
 
@@ -81,9 +81,7 @@ bool	init_game(t_game *game)
 		return (free(game->win), free(game->mlx), false);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bpp,
 			&game->img.line_len, &game->img.endian);
-	if (init_img(game) == false)
-		return (false);
-	return (true);
+	return (init_img(game));
 }
 
 void	init_ray(t_game *g, t_ray *r, int x)

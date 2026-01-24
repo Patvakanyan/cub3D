@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:03:30 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 15:37:23 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:26:40 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ typedef struct s_ray
 	int				step_y;
 	int				hit;
 	int				side;
+	int				wall_dir;
 }					t_ray;
 
 typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
+	int				move_flag;
 	int				fd;
 	t_img			img;
 	t_img			texture[4];
@@ -73,5 +75,16 @@ typedef struct s_game
 	t_ray			ray;
 	t_config		*config;
 }					t_game;
+
+typedef enum e_move
+{
+	MOVE_NONE,
+	ROTATE_LEFT,
+	ROTATE_RIGHT,
+	MOVE_LEFT,
+	MOVE_RIGHT,
+	MOVE_DOWN,
+	MOVE_UP
+}					t_move;
 
 #endif
