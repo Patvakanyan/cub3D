@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:57:36 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 16:41:16 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:50:09 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	free_game(t_game *game)
 		free(game->mlx);
 		game->mlx = NULL;
 	}
+	close(game->fd);
 	free_configs(game->config);
 }

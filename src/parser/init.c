@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 17:47:03 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 15:15:32 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:44:51 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,6 @@ t_config	*init_configs(void)
 	configs->map = NULL;
 	return (configs);
 }
-
-// t_player	*init_player(void)
-// {
-// 	t_player	*player;
-
-// 	player = (t_player *)malloc(sizeof(t_player));
-// 	if (!player)
-// 	{
-// 		ft_putstr_fd(ALLOC_ERR, 2);
-// 		return (NULL);
-// 	}
-// 	player->x = 0;
-// 	player->y = 0;
-// 	player->dir_x = 0;
-// 	player->dir_y = 0;
-// 	player->plane_x = 0;
-// 	player->plane_y = 0;
-// 	return (player);
-// }
 
 t_map_list	*new_node(char **val)
 {

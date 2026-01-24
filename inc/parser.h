@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:28:54 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 15:36:30 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 17:05:22 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # define ALLOC_ERR "Error: bad alloc.\n"
 # define PLAYER_404 "Error: player not found.\n"
 # define MAP_CLOSE_ERROR "Error: map walls arent closed.\n"
+# define NORTH_FD_ERR "Error: north texture destination unreachable.\n"
+# define SOUTH_FD_ERR "Error: south texture destination unreachable.\n"
+# define EAST_FD_ERR "Error: east texture destination unreachable.\n"
+# define WEST_FD_ERR "Error: west texture destination unreachable.\n"
 
 # include "../libft/libft.h"
 # include "./struct.h"
@@ -90,6 +94,7 @@ int			colors_not_set(t_config *c);
 int			colors_are_complete(t_config *c);
 int			check_first_arg(char *arg);
 int			check_file_extension(char **src, char *target);
+int			check_file_destination(t_config *config);
 
 /*-----deallocation-----*/
 void		free_split(char **split);

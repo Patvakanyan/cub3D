@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 20:29:02 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 15:21:24 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:51:22 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,5 @@ int	validate_configs(t_game *game)
 		|| !check_file_extension(&game->config->east, ".xpm")
 		|| !check_file_extension(&game->config->west, ".xpm"))
 		return (0);
-	return (validate_map(game));
+	return (validate_map(game) && check_file_destination(game->config));
 }
