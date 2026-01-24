@@ -1,13 +1,10 @@
 C 21,1,148
 F 6,171,0
 
-NO ./texturs/kargin.xpm
-SO ./texturs/flag.xpm
-EA ./texturs/test.xpm
-WE ./texturs/test.xpm
-
-
-
+NO ./textures/kargin.xpm
+SO ./textures/flag.xpm
+EA ./textures/test.xpm
+WE ./textures/test.xpm
 
 1111111111111111111111111
 10000000001100000000001
