@@ -6,13 +6,13 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 19:10:17 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/21 12:10:27 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 13:38:01 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/tools.h"
 
-static bool	extract_ceiling_floor(t_map **map, int *celling_color,
+static bool	extract_ceiling_floor(t_map **map, int *ceiling_color,
 		int *floor_color)
 {
 	int	counter;
@@ -27,8 +27,8 @@ static bool	extract_ceiling_floor(t_map **map, int *celling_color,
 		++counter;
 		if (ft_strcmp((*map)->row[0], "C") == 0)
 		{
-			*celling_color = parse_color((*map)->row[1]);
-			if (*celling_color == -1)
+			*ceiling_color = parse_color((*map)->row[1]);
+			if (*ceiling_color == -1)
 				return (false);
 		}
 		else if (ft_strcmp((*map)->row[0], "F") == 0)
@@ -102,7 +102,7 @@ static bool	extract(t_map *head, t_data *data)
 {
 	if (head->type == CEILING_FLOOR)
 	{
-		if (extract_ceiling_floor(&head, &(data->celling_color),
+		if (extract_ceiling_floor(&head, &(data->ceiling_color),
 				&(data->floor_color)) == false)
 			return (false);
 		data->wall = extract_wall(&head);
@@ -117,7 +117,7 @@ static bool	extract(t_map *head, t_data *data)
 		data->wall = extract_wall(&head);
 		if (!data->wall)
 			return (false);
-		if (extract_ceiling_floor(&head, &(data->celling_color),
+		if (extract_ceiling_floor(&head, &(data->ceiling_color),
 				&(data->floor_color)) == false)
 			return (false);
 		data->map = extract_map(&head);

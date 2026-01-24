@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 12:20:17 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/21 12:25:26 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 13:23:41 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@ static void	move_strafe_left(t_game *game, t_player *player, double move_speed)
 	double	new_x;
 	double	new_y;
 
-	new_x = player->x - player->dir_y * move_speed;
-	new_y = player->y + player->dir_x * move_speed;
-	if (game->data->map[(int)(new_y)][(int)(new_x)] == '0')
+	new_x = player->x - player->plane_x * move_speed;
+	new_y = player->y - player->plane_y * move_speed;
+	if (game->data->map[(int)new_y][(int)new_x] == '0')
 	{
 		player->x = new_x;
 		player->y = new_y;
 	}
-	printf("new_x %f new_y %f dir_x %f dir_y %f\n", new_x, new_y, player->dir_x,
-		player->dir_y);
 }
 
 static void	move_strafe_right(t_game *game, t_player *player, double move_speed)
@@ -33,15 +31,13 @@ static void	move_strafe_right(t_game *game, t_player *player, double move_speed)
 	double	new_x;
 	double	new_y;
 
-	new_x = player->x + player->dir_y * move_speed;
-	new_y = player->y - player->dir_x * move_speed;
-	if (game->data->map[(int)(new_y)][(int)(new_x)] == '0')
+	new_x = player->x + player->plane_x * move_speed;
+	new_y = player->y + player->plane_y * move_speed;
+	if (game->data->map[(int)new_y][(int)new_x] == '0')
 	{
 		player->x = new_x;
 		player->y = new_y;
 	}
-	printf("here %f %f dir_x %f dir_y %f\n", new_x, new_y, player->dir_x,
-		player->dir_y);
 }
 
 static void	move_forward(t_game *game, t_player *player, double move_speed)
@@ -74,7 +70,7 @@ static void	move_backward(t_game *game, t_player *player, double move_speed)
 
 void	move_player(t_game *game, char direction)
 {
-	t_player *player;
+	t_player	*player;
 
 	player = &game->player;
 	if (direction == 'A')

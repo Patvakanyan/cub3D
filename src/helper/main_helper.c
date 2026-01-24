@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 16:48:36 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/23 23:40:52 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 13:19:08 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,32 @@ static int	is_player_char(char c)
 static void	get_player_dir(t_game *game, int i, int j)
 {
 	char	c;
+	double	fov;
 
 	c = game->data->map[i][j];
+	fov = 0.66;
 	if (c == 'N')
 	{
-		game->player.dir_x = 0.0;
-		game->player.dir_y = -1.0;
-		game->player.plane_x = 0.66;
-		game->player.plane_y = 0.0;
+		game->player.dir_x = 0;
+		game->player.dir_y = -1;
 	}
 	else if (c == 'S')
 	{
-		game->player.dir_x = 0.0;
-		game->player.dir_y = 1.0;
-		game->player.plane_x = -0.66;
-		game->player.plane_y = 0.0;
+		game->player.dir_x = 0;
+		game->player.dir_y = 1;
 	}
 	else if (c == 'E')
 	{
-		game->player.dir_x = 1.0;
-		game->player.dir_y = 0.0;
-		game->player.plane_x = 0.0;
-		game->player.plane_y = -0.66;
+		game->player.dir_x = 1;
+		game->player.dir_y = 0;
 	}
 	else if (c == 'W')
 	{
-		game->player.dir_x = -1.0;
-		game->player.dir_y = 0.0;
-		game->player.plane_x = 0.0;
-		game->player.plane_y = 0.66;
+		game->player.dir_x = -1;
+		game->player.dir_y = 0;
 	}
+	game->player.plane_x = -game->player.dir_y * fov;
+	game->player.plane_y = game->player.dir_x * fov;
 }
 
 bool	get_player_pos(t_game *game, double *x, double *y)

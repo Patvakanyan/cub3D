@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/23 22:54:37 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 13:47:07 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_column(t_game *g, t_ray *r, int x)
 	y = 0;
 	while (y < draw_start)
 	{
-		put_pixel(&g->img, x, y, g->data->celling_color);
+		put_pixel(&g->img, x, y, g->data->ceiling_color);
 		y++;
 	}
 	while (y < draw_end)

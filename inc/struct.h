@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:03:30 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/23 22:53:55 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 13:38:01 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_map
 typedef struct s_data
 {
 	char			**map;
-	int				celling_color;
+	int				ceiling_color;
 	int				floor_color;
 	char			***wall;
 }					t_data;

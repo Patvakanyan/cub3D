@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:49:06 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/21 12:23:49 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/24 13:49:11 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static void	rotate_player(t_player *player, char *direction)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = player->dir_x;
 	if (!ft_strcmp(direction, "right"))
-		player->rot_speed = -0.1;
+		player->rot_speed = 0.09;
 	else
-		player->rot_speed = 0.1;
+		player->rot_speed = -0.09;
+	old_dir_x = player->dir_x;
 	player->dir_x = player->dir_x * cos(player->rot_speed) - player->dir_y
 		* sin(player->rot_speed);
 	player->dir_y = old_dir_x * sin(player->rot_speed) + player->dir_y
@@ -80,5 +80,3 @@ void	move_character(t_game *game, int direction)
 	if (direction != -1 && direction == MOVE_DOWN)
 		move_player(game, 'S');
 }
-
-
