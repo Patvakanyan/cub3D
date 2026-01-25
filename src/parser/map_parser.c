@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:34:34 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/25 18:56:22 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 01:43:39 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_map	*list_to_map(t_map_list *head, int height)
 	temp = head;
 	while (temp && ++i < height)
 	{
-		if (ft_strcmp(temp->row, "") == 0)
+		if (ft_strcmp(temp->row, "") == 0 && check_map_empty_lines(temp))
 			return (free_grdon_map(head, map, i), NULL);
 		map->map[i] = ft_strdup(temp->row);
 		if (!map->map[i])

@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:51:08 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 18:43:17 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 01:31:52 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 # define W 640
 # define H 640
+# define MINI_SIZE 5
+# define PLAYER_SIZE 3
 # define KEY_ESC 65307
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363

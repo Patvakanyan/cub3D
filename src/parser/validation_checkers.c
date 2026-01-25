@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 02:12:37 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 18:45:45 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 01:39:35 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,20 @@ int	check_file_destination(t_config *config)
 	close(fd_east);
 	close(fd_west);
 	return (1);
+}
+
+int	check_map_empty_lines(t_map_list *head)
+{
+	t_map_list	*temp;
+
+	if (!head)
+		return (0);
+	temp = head;
+	while (temp)
+	{
+		if (ft_strcmp(temp->row, ""))
+			return (1);
+		temp = temp->next;
+	}
+	return (0);
 }

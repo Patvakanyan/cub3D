@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/25 20:09:46 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 01:32:10 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int	render(void *ptr)
 	mlx_clear_window(game->mlx, game->win);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	move_character(game, game->move_flag);
+	render_minimap(game);
 	return (0);
 }

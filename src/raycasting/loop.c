@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 20:11:21 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 18:36:53 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 01:44:45 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	key_release(int keycode, void *ptr)
 
 void	start_game_loop(t_game *game)
 {
+	mlx_mouse_move(game->mlx, game->win, W / 2, H / 2);
+	mlx_hook(game->win, 6, 1L << 6, mouse_move, game);
 	mlx_hook(game->win, 2, 1L << 0, key_push, game);
 	mlx_hook(game->win, 3, 1L << 1, key_release, game);
 	mlx_hook(game->win, 17, 0L, close_game, game);

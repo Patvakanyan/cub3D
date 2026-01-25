@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:28:54 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/25 18:23:32 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 01:39:50 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int			colors_are_complete(t_config *c);
 int			check_first_arg(char *arg);
 int			check_file_extension(char **src, char *target);
 int			check_file_destination(t_config *config);
+int			check_map_empty_lines(t_map_list *head);
 
 /*-----deallocation-----*/
 void		free_split(char **split);

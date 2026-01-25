@@ -18,6 +18,8 @@ SRCS	=	./src/main.c \
 			./src/helper/init_helper.c \
 			./src/helper/move_helper.c \
 			./src/helper/raycasting_helper.c \
+			./src/bonus/mouse_hook.c \
+			./src/bonus/minimap.c \
 			./src/raycasting/loop.c \
 			./src/raycasting/raycasting.c \
 			./src/parser/checkers.c \
