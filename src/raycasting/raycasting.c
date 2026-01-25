@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
+/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 18:17:21 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/25 14:43:06 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ void	draw_column(t_game *g, t_ray *r, int x)
 	if (r->side == 0)
 	{
 		if (r->raydir_x < 0)
-			r->wall_dir = 0;
+			r->wall_dir = TEX_WEST;
 		else
-			r->wall_dir = 1;
+			r->wall_dir = TEX_EAST;
 		r->perp_dist = r->side_dist_x - r->delta_x;
 		wall_x = g->player.y + r->perp_dist * r->raydir_y;
 	}
 	else
 	{
 		if (r->raydir_y < 0)
-			r->wall_dir = 2;
+			r->wall_dir = TEX_NORTH;
 		else
-			r->wall_dir = 3;
+			r->wall_dir = TEX_SOUTH;
 		r->perp_dist = r->side_dist_y - r->delta_y;
 		wall_x = g->player.x + r->perp_dist * r->raydir_x;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
+/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:03:30 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 18:14:15 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/25 14:42:47 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # include "./parser.h"
 
 typedef struct s_config	t_config;
+
+typedef enum e_texture
+{
+	TEX_WEST,
+	TEX_EAST,
+	TEX_NORTH,
+	TEX_SOUTH
+}					t_texture;
 
 typedef struct s_img
 {
