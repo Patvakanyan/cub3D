@@ -6,11 +6,20 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 19:15:08 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 15:29:58 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/25 18:58:13 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parser.h"
+
+static int	check_player_count(int player_count)
+{
+	if (player_count < 1)
+		return (ft_putstr_fd(PLAYER_404, 2), 0);
+	if (player_count > 1)
+		return (ft_putstr_fd("Error: multiple player found.\n", 2), 0);
+	return (1);
+}
 
 t_map	*copy_map(t_map *src_map)
 {
@@ -47,7 +56,7 @@ int	find_player_pos(t_game *game, t_map *map)
 	while (++coords.y < map->height)
 	{
 		coords.x = -1;
-		while (++coords.x < (int)ft_strlen(map->map[coords.y]))
+		while (++coords.x < ft_strlen(map->map[coords.y]))
 		{
 			if (!is_valid_char(map->map[coords.y][coords.x]))
 				return (0);
@@ -63,5 +72,5 @@ int	find_player_pos(t_game *game, t_map *map)
 			}
 		}
 	}
-	return (player_count == 1);
+	return (check_player_count(player_count));
 }

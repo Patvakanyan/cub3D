@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:49:32 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 18:17:26 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/25 17:34:21 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 		set_game_defaults(&game, fd);
 		game.config = parse_configs(fd);
 		if (!game.config)
-			return (close(fd), ft_putstr_fd(ALLOC_ERR, 2), 1);
+			return (close(fd), 1);
 		if (!validate_configs(&game))
 			return (close(fd), free_configs(game.config), 1);
 		if (!init_game(&game))

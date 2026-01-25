@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:50:44 by apatvaka          #+#    #+#             */
-/*   Updated: 2025/01/30 17:07:46 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/25 18:58:48 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 				break ;
 			++j;
 		}
-		if (j == ft_strlen(needle))
+		if (j == (size_t)ft_strlen(needle))
 			return (&ft_haystack[i]);
 		++i;
 	}

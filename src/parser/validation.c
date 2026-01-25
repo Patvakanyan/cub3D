@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 20:29:02 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 16:51:22 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/25 17:40:55 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,7 @@ int	validate_map(t_game *game)
 	if (!init_player(game))
 		return (free_map(copy, copy->height), 0);
 	if (!find_player_pos(game, copy))
-	{
-		free_map(copy, copy->height);
-		return (ft_putstr_fd(PLAYER_404, 2), 0);
-	}
+		return (free_map(copy, copy->height), 0);
 	if (!flood_fill(copy, (int)game->player.x, (int)game->player.y))
 	{
 		free_map(copy, copy->height);

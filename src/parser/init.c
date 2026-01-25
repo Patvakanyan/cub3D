@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 17:47:03 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 16:44:51 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/25 17:35:24 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_map	*init_map(int height)
 	t_map	*map;
 
 	if (height <= 0)
-		return (ft_putstr_fd(ALLOC_ERR, 2), NULL);
+		return (ft_putstr_fd("Error: invalid map height.\n", 2), NULL);
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		return (ft_putstr_fd(ALLOC_ERR, 2), NULL);

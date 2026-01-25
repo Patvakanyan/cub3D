@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:28:54 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 17:05:22 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/25 18:23:32 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define WRONG_ORDER_ERR "Error: configs misorder in *.cub file.\n"
 # define ALLOC_ERR "Error: bad alloc.\n"
 # define PLAYER_404 "Error: player not found.\n"
+# define GRDON_MAP "Error: map contains disconnected parts.\n"
 # define MAP_CLOSE_ERROR "Error: map walls arent closed.\n"
 # define NORTH_FD_ERR "Error: north texture destination unreachable.\n"
 # define SOUTH_FD_ERR "Error: south texture destination unreachable.\n"
@@ -77,6 +78,7 @@ t_map		*list_to_map(t_map_list *list, int size);
 
 /*-----parser helpers-----*/
 int			split_len(char **split);
+void		replace_map_spaces(t_map *map);
 int			safe_place(t_config *config, char **src, char config_name);
 int			assign_color(t_config *config, char *src, char c_f);
 int			place_config(t_config *configs, char **spl);
@@ -101,6 +103,7 @@ void		free_split(char **split);
 void		free_map(t_map *map, int size);
 void		free_map_lst(t_map_list *head);
 void		free_configs(t_config *configs);
+void		free_grdon_map(t_map_list *head, t_map *map, int ind);
 void		free_stuff(t_config *config, char *line, char **split);
 
 /*-----validation-----*/

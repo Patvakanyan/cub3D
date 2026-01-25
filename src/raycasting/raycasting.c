@@ -3,76 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/25 14:43:06 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/25 20:05:55 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/raycasting.h"
 
+static void	display(t_game *g, t_ray *r, int x, t_draw_configs d)
+{
+	int	y;
+
+	y = -1;
+	while (++y < d.draw_start)
+		put_pixel(&g->img, x, y, g->config->ceiling);
+	while (y < d.draw_end)
+	{
+		d.tex_y = (int)d.tex_pos & (g->texture[r->wall_dir].height - 1);
+		d.texture_color = get_tex_color(&g->texture[r->wall_dir],
+				d.tex_x, d.tex_y);
+		put_pixel(&g->img, x, y, d.texture_color);
+		d.tex_pos += d.step;
+		y++;
+	}
+	while (++y < H)
+		put_pixel(&g->img, x, y, g->config->floor);
+}
+
+static void	calc_and_display(t_game *g, t_ray *r, int x, t_draw_configs draw)
+{
+	draw.wall_x -= floor(draw.wall_x);
+	draw.line_h = H / r->perp_dist;
+	draw.draw_start = -draw.line_h / 2 + H / 2;
+	if (draw.draw_start < 0)
+		draw.draw_start = 0;
+	draw.draw_end = draw.line_h / 2 + H / 2;
+	if (draw.draw_end >= H)
+		draw.draw_end = H - 1;
+	draw.tex_x = (draw.wall_x * g->texture[r->wall_dir].width);
+	draw.step = 1.0 * g->texture[r->wall_dir].height / draw.line_h;
+	draw.tex_pos = (draw.draw_start - H / 2 + draw.line_h / 2) * draw.step;
+	display(g, r, x, draw);
+}
+
 void	draw_column(t_game *g, t_ray *r, int x)
 {
-	int		line_h;
-	int		draw_start;
-	int		texture_color;
-	int		draw_end;
-	int		y;
-	int		tex_x;
-	int		tex_y;
-	double	wall_x;
-	double	tex_pos;
-	double	step;
+	t_draw_configs	draw;
 
 	if (r->side == 0)
 	{
+		r->wall_dir = TEX_EAST;
 		if (r->raydir_x < 0)
 			r->wall_dir = TEX_WEST;
-		else
-			r->wall_dir = TEX_EAST;
 		r->perp_dist = r->side_dist_x - r->delta_x;
-		wall_x = g->player.y + r->perp_dist * r->raydir_y;
+		draw.wall_x = g->player.y + r->perp_dist * r->raydir_y;
 	}
 	else
 	{
+		r->wall_dir = TEX_SOUTH;
 		if (r->raydir_y < 0)
 			r->wall_dir = TEX_NORTH;
-		else
-			r->wall_dir = TEX_SOUTH;
 		r->perp_dist = r->side_dist_y - r->delta_y;
-		wall_x = g->player.x + r->perp_dist * r->raydir_x;
+		draw.wall_x = g->player.x + r->perp_dist * r->raydir_x;
 	}
-	wall_x -= floor(wall_x);
-	line_h = (int)(H / r->perp_dist);
-	draw_start = -line_h / 2 + H / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	draw_end = line_h / 2 + H / 2;
-	if (draw_end >= H)
-		draw_end = H - 1;
-	tex_x = (int)(wall_x * g->texture[r->wall_dir].width);
-	step = 1.0 * g->texture[r->wall_dir].height / line_h;
-	tex_pos = (draw_start - H / 2 + line_h / 2) * step;
-	y = 0;
-	while (y < draw_start)
-	{
-		put_pixel(&g->img, x, y, g->config->ceiling);
-		y++;
-	}
-	while (y < draw_end)
-	{
-		tex_y = (int)tex_pos & (g->texture[r->wall_dir].height - 1);
-		texture_color = get_tex_color(&g->texture[r->wall_dir], tex_x, tex_y);
-		put_pixel(&g->img, x, y, texture_color);
-		tex_pos += step;
-		y++;
-	}
-	while (y < H)
-	{
-		put_pixel(&g->img, x, y, g->config->floor);
-		y++;
-	}
+	calc_and_display(g, r, x, draw);
 }
 
 int	render(void *ptr)

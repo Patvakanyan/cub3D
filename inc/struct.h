@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:03:30 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/25 14:42:47 by apatvaka         ###   ########.fr       */
+/*   Updated: 2026/01/25 20:05:29 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,19 @@ typedef struct s_game
 	t_ray			ray;
 	t_config		*config;
 }					t_game;
+
+typedef struct s_draw_configs
+{
+	int		line_h;
+	int		draw_start;
+	int		texture_color;
+	int		draw_end;
+	int		tex_x;
+	int		tex_y;
+	double	wall_x;
+	double	tex_pos;
+	double	step;
+}	t_draw_configs;
 
 typedef enum e_move
 {
