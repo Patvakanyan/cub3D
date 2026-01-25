@@ -6,26 +6,26 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/25 20:05:55 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/25 20:09:46 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/raycasting.h"
 
-static void	display(t_game *g, t_ray *r, int x, t_draw_configs d)
+static void	display(t_game *g, t_ray *r, int x, t_draw_configs draw)
 {
 	int	y;
 
 	y = -1;
-	while (++y < d.draw_start)
+	while (++y < draw.draw_start)
 		put_pixel(&g->img, x, y, g->config->ceiling);
-	while (y < d.draw_end)
+	while (y < draw.draw_end)
 	{
-		d.tex_y = (int)d.tex_pos & (g->texture[r->wall_dir].height - 1);
-		d.texture_color = get_tex_color(&g->texture[r->wall_dir],
-				d.tex_x, d.tex_y);
-		put_pixel(&g->img, x, y, d.texture_color);
-		d.tex_pos += d.step;
+		draw.tex_y = (int)draw.tex_pos & (g->texture[r->wall_dir].height - 1);
+		draw.texture_color = get_tex_color(&g->texture[r->wall_dir],
+				draw.tex_x, draw.tex_y);
+		put_pixel(&g->img, x, y, draw.texture_color);
+		draw.tex_pos += draw.step;
 		y++;
 	}
 	while (++y < H)
