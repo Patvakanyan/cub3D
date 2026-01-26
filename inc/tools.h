@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 16:11:28 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 01:30:59 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 02:53:43 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int		key_push(int keycode, void *ptr);
 
 /* ========== MOVEMENT FUNCTIONS ========== */
 void	move_player(t_game *game, char direction);
-int		mouse_move(int x, int y, t_game *game);
 void	move_character(t_game *game, int direction);
 
 /* ========== RAYCASTING HELPER FUNCTIONS ========== */

@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 02:12:37 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 01:39:35 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 02:29:13 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_player(char c)
 int	is_valid_char(char c)
 {
 	return (c == '1' || c == '0' || c == ' '
-		|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
+		|| c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == 'D');
 }
 
 int	check_player_pos(t_map *map, int x, int y)

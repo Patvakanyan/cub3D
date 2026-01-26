@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:49:06 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 18:15:15 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 03:06:11 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,32 +37,6 @@ static void	rotate_player(t_player *player, char *direction)
 		* sin(player->rot_speed);
 	player->plane_y = old_plane_x * sin(player->rot_speed) + player->plane_y
 		* cos(player->rot_speed);
-}
-
-void	move_forward_backward(t_game *game, char direction)
-{
-	double		new_x;
-	double		new_y;
-	t_player	*player;
-
-	player = &game->player;
-	new_x = player->x;
-	new_y = player->y;
-	if (direction == 'W')
-	{
-		new_x += player->dir_x * game->player.move_speed;
-		new_y += player->dir_y * game->player.move_speed;
-	}
-	else if (direction == 'S')
-	{
-		new_x -= player->dir_x * game->player.move_speed;
-		new_y -= player->dir_y * game->player.move_speed;
-	}
-	if (game->config->map->map[(int)(new_y)][(int)(new_x)] == '0')
-	{
-		player->x = new_x;
-		player->y = new_y;
-	}
 }
 
 void	move_character(t_game *game, int direction)

@@ -6,11 +6,35 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 01:32:10 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:21:54 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/raycasting.h"
+#include "../../inc/bonus.h"
+
+static void	pick_texture(t_ray *ray, t_door *door)
+{
+	ray->wall_dir = TEX_DOOR;
+	if (ray->side == 0)
+	{
+		if (!door)
+		{
+			ray->wall_dir = TEX_EAST;
+			if (ray->raydir_x < 0)
+				ray->wall_dir = TEX_WEST;
+		}
+	}
+	else
+	{
+		if (!door)
+		{
+			ray->wall_dir = TEX_SOUTH;
+			if (ray->raydir_y < 0)
+				ray->wall_dir = TEX_NORTH;
+		}
+	}
+}
 
 static void	display(t_game *g, t_ray *r, int x, t_draw_configs draw)
 {
@@ -51,20 +75,19 @@ static void	calc_and_display(t_game *g, t_ray *r, int x, t_draw_configs draw)
 void	draw_column(t_game *g, t_ray *r, int x)
 {
 	t_draw_configs	draw;
+	t_door			*door;
 
+	door = get_door_at(g, r->map_x, r->map_y);
+	if (door && door->open)
+			return ;
+	pick_texture(r, door);
 	if (r->side == 0)
 	{
-		r->wall_dir = TEX_EAST;
-		if (r->raydir_x < 0)
-			r->wall_dir = TEX_WEST;
 		r->perp_dist = r->side_dist_x - r->delta_x;
 		draw.wall_x = g->player.y + r->perp_dist * r->raydir_y;
 	}
 	else
 	{
-		r->wall_dir = TEX_SOUTH;
-		if (r->raydir_y < 0)
-			r->wall_dir = TEX_NORTH;
 		r->perp_dist = r->side_dist_y - r->delta_y;
 		draw.wall_x = g->player.x + r->perp_dist * r->raydir_x;
 	}

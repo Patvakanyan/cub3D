@@ -6,22 +6,25 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:34:34 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 01:43:39 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 03:01:54 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parser.h"
+#include "../../inc/bonus.h"
 
-void	free_grdon_map(t_map_list *head, t_map *map, int ind)
+void	free_grdon_map(t_map_list *head, t_map *map, int ind, t_door *doors)
 {
 	if (head)
 		free_map_lst(head);
 	if (map)
 		free_map(map, ind);
+	if (doors)
+		free_doors(doors);
 	ft_putstr_fd(GRDON_MAP, 2);
 }
 
-void	replace_map_spaces(t_map *map)
+void	replace_spaces(t_map *map)
 {
 	int	i;
 	int	j;
@@ -40,33 +43,33 @@ void	replace_map_spaces(t_map *map)
 	}
 }
 
-t_map	*list_to_map(t_map_list *head, int height)
+t_map	*list_to_map(t_map_list *hd, int sz, t_config *cfg)
 {
 	int			i;
 	t_map		*map;
 	t_map_list	*temp;
 
-	if (height <= 0 || !head)
+	if (!hd)
 		return (NULL);
-	map = init_map(height);
+	map = init_map(sz);
 	if (!map)
-		return (free_map_lst(head), NULL);
+		return (free_map_lst(hd), NULL);
 	i = -1;
-	temp = head;
-	while (temp && ++i < height)
+	temp = hd;
+	while (temp && ++i < sz)
 	{
 		if (ft_strcmp(temp->row, "") == 0 && check_map_empty_lines(temp))
-			return (free_grdon_map(head, map, i), NULL);
+			return (free_grdon_map(hd, map, i, cfg->doors), NULL);
 		map->map[i] = ft_strdup(temp->row);
 		if (!map->map[i])
-			return (free_grdon_map(head, map, i), NULL);
+			return (free_grdon_map(hd, map, i, cfg->doors), NULL);
 		if (map->max_width < ft_strlen(map->map[i]))
 			map->max_width = ft_strlen(map->map[i]);
+		if (!parse_doors_line(&cfg->doors, map->map[i], i))
+			return (free_grdon_map(hd, map, i, cfg->doors), NULL);
 		temp = temp->next;
 	}
-	map->map[height] = NULL;
-	replace_map_spaces(map);
-	return (free_map_lst(head), map);
+	return (free_map_lst(hd), map->map[sz] = NULL, replace_spaces(map), map);
 }
 
 int	parse_map(t_config *config, char **first_line, int fd)
@@ -92,7 +95,7 @@ int	parse_map(t_config *config, char **first_line, int fd)
 		line = get_next_line(fd);
 		++size;
 	}
-	config->map = list_to_map(head, size);
+	config->map = list_to_map(head, size, config);
 	if (!config->map)
 		return (free(line), 0);
 	return (free(line), 1);

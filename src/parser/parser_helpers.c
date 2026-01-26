@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:31:07 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 15:06:40 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 03:49:08 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	safe_place(t_config *config, char **src, char config_name)
 		config->east = target;
 	else if (config_name == 'W')
 		config->west = target;
+	else if (config_name == 'D')
+		config->door = target;
 	return (1);
 }
 
@@ -78,6 +80,8 @@ int	place_config(t_config *configs, char **spl)
 		return (safe_place(configs, &spl[1], 'E'));
 	if (ft_strcmp(spl[0], "WE") == 0 && !configs->west)
 		return (safe_place(configs, &spl[1], 'W'));
+	if (ft_strcmp(spl[0], "DO") == 0 && !configs->door)
+		return (safe_place(configs, &spl[1], 'D'));
 	if (check_first_arg(spl[0]))
 	{
 		ft_putstr_fd(DUP_ERROR, 2);

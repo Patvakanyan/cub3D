@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 22:00:48 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 18:06:57 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 03:47:08 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	check_first_arg(char *arg)
 		return (0);
 	if ((ft_strcmp(arg, "C") == 0) || (ft_strcmp(arg, "F") == 0)
 		|| (ft_strcmp(arg, "NO") == 0) || (ft_strcmp(arg, "SO") == 0)
-		|| (ft_strcmp(arg, "EA") == 0) || (ft_strcmp(arg, "WE") == 0))
+		|| (ft_strcmp(arg, "EA") == 0) || (ft_strcmp(arg, "WE") == 0)
+		|| (ft_strcmp(arg, "DO") == 0))
 		return (1);
 	ft_putstr_fd(WRONG_CONFIG, 2);
 	ft_putstr_fd(arg, 2);

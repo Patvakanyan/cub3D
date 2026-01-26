@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 18:00:26 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 15:07:02 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 03:16:57 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	split_len(char **split)
 
 void	print_configs(t_config *config)
 {
-	int	i;
+	int		i;
+	t_door	*doors;
 
 	printf("North: %s\n", config->north);
 	printf("South: %s\n", config->south);
@@ -67,12 +68,16 @@ void	print_configs(t_config *config)
 	printf("Floor: %x\n", config->floor);
 	printf("\n");
 	printf("Map:\n");
-	i = 0;
-	while (config->map->map[i])
-	{
+	i = -1;
+	while (config->map->map[++i])
 		printf("%s\n", config->map->map[i]);
-		++i;
-	}
 	printf("Map size: %d\n", config->map->height);
 	printf("Max width: %d\n", config->map->max_width);
+	printf("Doors:\n");
+	doors = config->doors;
+	while (doors)
+	{
+		printf("door: x %d, y %d\n", doors->x, doors->y);
+		doors = doors->next;
+	}
 }

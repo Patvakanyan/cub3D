@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 12:28:04 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 18:16:51 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:17:42 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,18 @@ int	get_tex_color(t_img *tex, int tex_x, int tex_y)
 		return (0);
 	pixel = tex->addr + (tex_y * tex->line_len) + (tex_x * (tex->bpp / 8));
 	return (*(int *)pixel);
+}
+
+t_door	*get_door_at(t_game *game, int x, int y)
+{
+	t_door	*door;
+
+	door = game->config->doors;
+	while (door)
+	{
+		if (door->x == x && door->y == y)
+			return (door);
+		door = door->next;
+	}
+	return (NULL);
 }

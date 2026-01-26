@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:03:30 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/25 20:07:23 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 03:44:14 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ typedef enum e_texture
 	TEX_WEST,
 	TEX_EAST,
 	TEX_NORTH,
-	TEX_SOUTH
+	TEX_SOUTH,
+	TEX_DOOR
 }					t_texture;
 
 typedef struct s_img
@@ -77,8 +78,9 @@ typedef struct s_game
 	void			*win;
 	int				move_flag;
 	int				fd;
+	double			offset;
 	t_img			img;
-	t_img			texture[4];
+	t_img			texture[5];
 	t_player		player;
 	t_ray			ray;
 	t_config		*config;

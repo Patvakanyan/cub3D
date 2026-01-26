@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:28:54 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 01:39:50 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 03:45:15 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@
 typedef struct s_game	t_game;
 typedef struct s_player	t_player;
 
+typedef struct s_door
+{
+	int				x;
+	int				y;
+	int				open;
+	struct s_door	*next;
+}	t_door;
+
 typedef struct s_map_list
 {
 	char				*row;
@@ -60,9 +68,11 @@ typedef struct s_config
 	char	*south;
 	char	*east;
 	char	*west;
+	char	*door;
 	int		ceiling;
 	int		floor;
 	t_map	*map;
+	t_door	*doors;
 }	t_config;
 
 typedef struct s_coords
@@ -74,11 +84,11 @@ typedef struct s_coords
 /*-----parser-----*/
 t_config	*parse_configs(int fd);
 int			parse_map(t_config *config, char **first_line, int fd);
-t_map		*list_to_map(t_map_list *list, int size);
+t_map		*list_to_map(t_map_list *list, int size, t_config *cfg);
 
 /*-----parser helpers-----*/
 int			split_len(char **split);
-void		replace_map_spaces(t_map *map);
+void		replace_spaces(t_map *map);
 int			safe_place(t_config *config, char **src, char config_name);
 int			assign_color(t_config *config, char *src, char c_f);
 int			place_config(t_config *configs, char **spl);
@@ -104,7 +114,7 @@ void		free_split(char **split);
 void		free_map(t_map *map, int size);
 void		free_map_lst(t_map_list *head);
 void		free_configs(t_config *configs);
-void		free_grdon_map(t_map_list *head, t_map *map, int ind);
+void		free_grdon_map(t_map_list *head, t_map *map, int , t_door *doors);
 void		free_stuff(t_config *config, char *line, char **split);
 
 /*-----validation-----*/

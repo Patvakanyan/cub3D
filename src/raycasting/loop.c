@@ -6,11 +6,12 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 20:11:21 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 01:44:45 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 03:30:48 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/raycasting.h"
+#include "../../inc/bonus.h"
 
 int	key_push(int keycode, void *ptr)
 {
@@ -19,18 +20,20 @@ int	key_push(int keycode, void *ptr)
 	game = (t_game *)ptr;
 	if (keycode == KEY_ESC)
 		close_game(game);
-	if (keycode == KEY_LEFT)
+	else if (keycode == KEY_LEFT)
 		game->move_flag = ROTATE_LEFT;
-	if (keycode == KEY_RIGHT)
+	else if (keycode == KEY_RIGHT)
 		game->move_flag = ROTATE_RIGHT;
-	if (keycode == KEY_A)
+	else if (keycode == KEY_A)
 		game->move_flag = MOVE_LEFT;
-	if (keycode == KEY_D)
+	else if (keycode == KEY_D)
 		game->move_flag = MOVE_RIGHT;
-	if (keycode == KEY_S)
+	else if (keycode == KEY_S)
 		game->move_flag = MOVE_DOWN;
-	if (keycode == KEY_W)
+	else if (keycode == KEY_W)
 		game->move_flag = MOVE_UP;
+	else if (keycode == KEY_E)
+		interact_door(game);
 	return (0);
 }
 
@@ -41,26 +44,26 @@ int	key_release(int keycode, void *ptr)
 	game = (t_game *)ptr;
 	if (keycode == KEY_LEFT)
 		game->move_flag = -1;
-	if (keycode == KEY_RIGHT)
+	else if (keycode == KEY_RIGHT)
 		game->move_flag = -1;
-	if (keycode == KEY_A)
+	else if (keycode == KEY_A)
 		game->move_flag = -1;
-	if (keycode == KEY_D)
+	else if (keycode == KEY_D)
 		game->move_flag = -1;
-	if (keycode == KEY_S)
+	else if (keycode == KEY_S)
 		game->move_flag = -1;
-	if (keycode == KEY_W)
+	else if (keycode == KEY_W)
 		game->move_flag = -1;
 	return (1);
 }
 
 void	start_game_loop(t_game *game)
 {
-	mlx_mouse_move(game->mlx, game->win, W / 2, H / 2);
-	mlx_hook(game->win, 6, 1L << 6, mouse_move, game);
 	mlx_hook(game->win, 2, 1L << 0, key_push, game);
 	mlx_hook(game->win, 3, 1L << 1, key_release, game);
 	mlx_hook(game->win, 17, 0L, close_game, game);
 	mlx_loop_hook(game->mlx, render, game);
+	mlx_mouse_move(game->mlx, game->win, W / 2, H / 2);
+	mlx_hook(game->win, 6, 1L << 6, mouse_move, game);
 	mlx_loop(game->mlx);
 }
