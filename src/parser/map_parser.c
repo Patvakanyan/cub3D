@@ -6,20 +6,18 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:34:34 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 15:47:12 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 20:54:03 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub.h"
 
-void	free_grdon_map(t_map_list *head, t_map *map, int i, t_door *doors)
+void	free_grdon_map(t_map_list *head, t_map *map, int i)
 {
 	if (head)
 		free_map_lst(head);
 	if (map)
 		free_map(map, i);
-	if (doors)
-		free_doors(doors);
 }
 
 void	replace_spaces(t_map *map)
@@ -57,14 +55,14 @@ t_map	*list_to_map(t_map_list *hd, int sz, t_config *cfg)
 	while (temp && ++i < sz)
 	{
 		if (ft_strcmp(temp->row, "") == 0 && check_map_empty_lines(temp))
-			return (free_grdon_map(hd, map, i, cfg->doors), NULL);
+			return (free_grdon_map(hd, map, i), NULL);
 		map->map[i] = ft_strdup(temp->row);
 		if (!map->map[i])
-			return (free_grdon_map(hd, map, i, cfg->doors), NULL);
+			return (free_grdon_map(hd, map, i), NULL);
 		if (map->max_width < ft_strlen(map->map[i]))
 			map->max_width = ft_strlen(map->map[i]);
-		if (!parse_doors_line(cfg, map->map[i], i))
-			return (free_grdon_map(hd, map, i + 1, cfg->doors), NULL);
+		if (!parse_bonus_line(cfg, map->map[i], i))
+			return (free_grdon_map(hd, map, i + 1), NULL);
 		temp = temp->next;
 	}
 	return (free_map_lst(hd), map->map[sz] = NULL, replace_spaces(map), map);

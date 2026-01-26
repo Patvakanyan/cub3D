@@ -6,11 +6,37 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 20:29:02 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 15:47:48 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 18:17:41 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub.h"
+
+static int	check_bonus_files(t_game *game)
+{
+	int	door_fd;
+	int	spirit_fd;
+
+	if (game->config->door)
+	{
+		if (!check_file_extension(&game->config->door, ".xpm"))
+			return (0);
+		door_fd = open(game->config->door, O_RDONLY);
+		if (door_fd < 0)
+			return (ft_putstr_fd(DOOR_FD_ERR, 2), 0);
+		close(door_fd);
+	}
+	if (game->config->spirit)
+	{
+		if (!check_file_extension(&game->config->spirit, ".xpm"))
+			return (0);
+		spirit_fd = open(game->config->spirit, O_RDONLY);
+		if (spirit_fd < 0)
+			return (ft_putstr_fd(SPIRIT_FD_ERR, 2), 0);
+		close(spirit_fd);
+	}
+	return (1);
+}
 
 int	check_file_extension(char **src, char *target)
 {
@@ -90,5 +116,6 @@ int	validate_configs(t_game *game)
 		|| !check_file_extension(&game->config->east, ".xpm")
 		|| !check_file_extension(&game->config->west, ".xpm"))
 		return (0);
-	return (validate_map(game) && check_file_destination(game->config));
+	return (validate_map(game) && check_file_destination(game->config)
+		&& check_bonus_files(game));
 }

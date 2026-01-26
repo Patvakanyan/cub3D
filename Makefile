@@ -16,12 +16,14 @@ SRCS		=	./src/main.c \
 				./src/helper/hook_helper.c \
 				./src/helper/init.c \
 				./src/helper/init_helper.c \
+				./src/helper/bonus_init.c \
 				./src/helper/move_helper.c \
 				./src/helper/raycasting_helper.c \
 				./src/bonus/mouse_hook.c \
 				./src/bonus/doors.c \
 				./src/bonus/minimap.c \
 				./src/bonus/spirit.c \
+				./src/bonus/spirit_utils.c \
 				./src/raycasting/loop.c \
 				./src/raycasting/raycasting.c \
 				./src/parser/checkers.c \

@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 02:01:17 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 15:46:15 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 20:34:48 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	add_door(t_door **head, int x, int y)
 	return (1);
 }
 
-int	parse_doors_line(t_config *config, const char *row, int y)
+int	parse_bonus_line(t_config *config, char *row, int y)
 {
 	int	x;
 
@@ -75,6 +75,14 @@ int	parse_doors_line(t_config *config, const char *row, int y)
 				return (ft_putstr_fd(DOOR_404, 2), 0);
 			if (!add_door(&config->doors, x, y))
 				return (0);
+		}
+		if (row[x] == 'C')
+		{
+			if (!config->spirit)
+				return (ft_putstr_fd(SP_404, 2), 0);
+			if (!add_spirit(&config->spirits, x, y))
+				return (0);
+			row[x] = '0';
 		}
 		++x;
 	}

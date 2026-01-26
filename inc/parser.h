@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:28:54 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 15:42:42 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 20:53:54 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@
 # define PLAYER_404 "Error: player not found.\n"
 # define MAP_404 "Error: map not found.\n"
 # define DOOR_404 "Error: map contains doors but door texture isn't defined.\n"
+# define SP_404 "Error: map contains sprit but sprit texture isn't defined.\n"
 # define GRDON_MAP "Error: map contains disconnected parts.\n"
 # define MAP_CLOSE_ERROR "Error: map walls arent closed.\n"
 # define NORTH_FD_ERR "Error: north texture destination unreachable.\n"
 # define SOUTH_FD_ERR "Error: south texture destination unreachable.\n"
 # define EAST_FD_ERR "Error: east texture destination unreachable.\n"
 # define WEST_FD_ERR "Error: west texture destination unreachable.\n"
+# define DOOR_FD_ERR "Error: door texture destination unreachable.\n"
+# define SPIRIT_FD_ERR "Error: spirit texture destination unreachable.\n"
 
 # include "./cub.h"
 
@@ -47,6 +50,14 @@ typedef struct s_door
 	int				open;
 	struct s_door	*next;
 }	t_door;
+
+typedef struct s_spirit
+{
+	double			x;
+	double			y;
+	double			speed;
+	struct s_spirit	*next;
+}	t_spirit;
 
 typedef struct s_map_list
 {
@@ -63,15 +74,17 @@ typedef struct s_map
 
 typedef struct s_config
 {
-	char	*north;
-	char	*south;
-	char	*east;
-	char	*west;
-	char	*door;
-	int		ceiling;
-	int		floor;
-	t_map	*map;
-	t_door	*doors;
+	char		*north;
+	char		*south;
+	char		*east;
+	char		*west;
+	char		*door;
+	char		*spirit;
+	int			ceiling;
+	int			floor;
+	t_map		*map;
+	t_door		*doors;
+	t_spirit	*spirits;
 }	t_config;
 
 typedef struct s_coords
@@ -113,7 +126,7 @@ void		free_split(char **split);
 void		free_map(t_map *map, int size);
 void		free_map_lst(t_map_list *head);
 void		free_configs(t_config *configs);
-void		free_grdon_map(t_map_list *head, t_map *map, int i, t_door *doors);
+void		free_grdon_map(t_map_list *head, t_map *map, int i);
 void		free_stuff(t_config *config, char *line, char **split);
 
 /*-----validation-----*/

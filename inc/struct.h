@@ -6,14 +6,13 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:03:30 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 15:42:55 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 17:52:49 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# include <stdbool.h>
 # include "./cub.h"
 
 typedef struct s_config	t_config;
@@ -24,7 +23,8 @@ typedef enum e_texture
 	TEX_EAST,
 	TEX_NORTH,
 	TEX_SOUTH,
-	TEX_DOOR
+	TEX_DOOR,
+	TEX_SPIRIT
 }					t_texture;
 
 typedef struct s_img
@@ -79,8 +79,9 @@ typedef struct s_game
 	int				move_flag;
 	int				fd;
 	double			offset;
+	double			zbuffer[W];
 	t_img			img;
-	t_img			texture[5];
+	t_img			texture[6];
 	t_player		player;
 	t_ray			ray;
 	t_config		*config;

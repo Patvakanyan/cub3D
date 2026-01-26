@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 17:47:03 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 15:47:09 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:56:13 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ t_config	*init_configs(void)
 	configs->east = NULL;
 	configs->west = NULL;
 	configs->door = NULL;
+	configs->spirit = NULL;
 	configs->ceiling = -1;
 	configs->floor = -1;
 	configs->map = NULL;
 	configs->doors = NULL;
+	configs->spirits = NULL;
 	return (configs);
 }
 

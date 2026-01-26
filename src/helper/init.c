@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:44:47 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 15:46:46 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 20:32:36 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,8 @@ static bool	set_texture_properties(t_game *game)
 	game->texture[3].addr = mlx_get_data_addr(game->texture[3].img,
 			&game->texture[3].bpp, &game->texture[3].line_len,
 			&game->texture[3].endian);
-	game->texture[4].addr = mlx_get_data_addr(game->texture[4].img,
-			&game->texture[4].bpp, &game->texture[4].line_len,
-			&game->texture[4].endian);
 	if (!game->texture[0].addr || !game->texture[1].addr
-		|| !game->texture[2].addr || !game->texture[3].addr
-		|| !game->texture[4].addr)
+		|| !game->texture[2].addr || !game->texture[3].addr)
 		return (ft_putstr_fd("Error: Failed to get texture data.\n", 2), false);
 	return (true);
 }
@@ -59,14 +55,10 @@ static bool	init_img(t_game *game)
 	game->texture[3].img = mlx_xpm_file_to_image(game->mlx,
 			game->config->south, &game->texture[3].width,
 			&game->texture[3].height);
-	game->texture[4].img = mlx_xpm_file_to_image(game->mlx,
-			game->config->door, &game->texture[4].width,
-			&game->texture[4].height);
 	if (!game->texture[0].img || !game->texture[1].img
-		|| !game->texture[2].img || !game->texture[3].img
-		|| !game->texture[4].img)
+		|| !game->texture[2].img || !game->texture[3].img)
 		return (false);
-	return (set_texture_properties(game));
+	return (init_bonus_textures(game) && set_texture_properties(game));
 }
 
 bool	init_game(t_game *game)

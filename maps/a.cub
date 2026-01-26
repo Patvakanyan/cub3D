@@ -1,8 +1,9 @@
 SO ./textures/bordo.xpm
-EA ./textures/images_64x64.xpm
+EA ./textures/gayush.xpm
 NO ./textures/kargin.xpm
-WE ./textures/flag.xpm
-DO ./textures/flag.xpm
+WE ./textures/lusamut.xpm
+DO ./textures/door.xpm
+SP ./textures/character.xpm
 
 F 255,171,0
 C 21,1,148
@@ -16,10 +17,10 @@ C 21,1,148
 1   1   1                         1   1
 1   1   1   1                    1   1
 1   1   1   1                   1   1
+1   1 C 1   1   1              1   1
+1   1   1   1   1      C       1   1
 1   1   1   1   1              1   1
-1   1   1   1   1              1   1
-1   1   1   1   1              1   1
-1                      N           1
+1               D       N          1
 1   1   1   1   1              1   1
 1   1   1   1   1              1   1
 1   1   1   1   1              1   1
@@ -32,4 +33,3 @@ C 21,1,148
 1                                     1
 1                                      1
 1111111111111111111111111111111111111111
-

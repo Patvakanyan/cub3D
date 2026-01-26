@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 19:00:29 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 15:47:06 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:55:34 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ void	free_configs(t_config *configs)
 	free(configs->west);
 	if (configs->door)
 		free(configs->door);
+	if (configs->spirit)
+		free(configs->spirit);
 	if (configs->map)
 		free_map(configs->map, configs->map->height);
 	if (configs->doors)
 		free_doors(configs->doors);
+	if (configs->spirits)
+		free_spirits(configs->spirits);
 	free(configs);
 }
 
