@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 17:50:57 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 02:40:57 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	render(void *ptr)
 	ft_memset(game->img.addr, 0, H * game->img.line_len);
 	while (x < W)
 	{
-		game->zbuffer[x] = r.perp_dist;
+		game->zbuffer[x] = 1e30;
 		init_ray(game, &r, x);
 		step_and_side(game, &r);
 		dda(game, &r);

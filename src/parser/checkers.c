@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 22:00:48 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 17:12:05 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 02:34:07 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	check_first_arg(char *arg)
 {
 	if (!arg)
 		return (0);
+	// arg = skip_spaces(arg);
 	if ((ft_strcmp(arg, "C") == 0) || (ft_strcmp(arg, "F") == 0)
 		|| (ft_strcmp(arg, "NO") == 0) || (ft_strcmp(arg, "SO") == 0)
 		|| (ft_strcmp(arg, "EA") == 0) || (ft_strcmp(arg, "WE") == 0)

@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:28:54 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 21:53:57 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 02:31:55 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define ARGC_ERROR "Error: Invalid number of arguments.\n"
 # define FD_ERROR "Error: unable to open the file.\n"
 # define COLOR_ERR_1 "Error: wrong count for color argument.\n"
-# define COLOR_ERR_2 "Error: wrong color number found.\n"
-# define HINT "Hint: use a number in range [0, 255] for each (r, g, b).\n"
+# define COLOR_ERR_2 "Error: wrong color number found.\n\
+Hint: use a number in range [0, 255] for each (r, g, b).\n"
 # define INVALID_CHAR "Error: invalid char in map found.\n"
 # define DUP_ERROR "Error: duplicate of config `"
 # define WRONG_CONFIG "Error: unexpected config found `"
@@ -38,6 +38,7 @@
 # define WEST_FD_ERR "Error: west texture destination unreachable.\n"
 # define DOOR_FD_ERR "Error: door texture destination unreachable.\n"
 # define SPIRIT_FD_ERR "Error: spirit texture destination unreachable.\n"
+# define PATH_ELEM_COUNT_ERR "Error: wrong count for path argument.\n"
 
 # include "./cub.h"
 
@@ -102,9 +103,9 @@ t_map		*list_to_map(t_map_list *list, int size, t_config *cfg);
 /*-----parser helpers-----*/
 int			split_len(char **split);
 void		replace_spaces(t_map *map);
-int			safe_place(t_config *config, char **src, char config_name);
-int			assign_color(t_config *config, char *src, char c_f);
-int			place_config(t_config *configs, char **spl);
+int			safe_place(t_config *config, char **spl, char config_name);
+int			assign_color(t_config *config, char *src);
+int			place_config(t_config *configs, char *src);
 
 /*-----init-----*/
 void		init_player_dir(t_player *p, char c);
@@ -128,7 +129,7 @@ void		free_map(t_map *map, int size);
 void		free_map_lst(t_map_list *head);
 void		free_configs(t_config *configs);
 void		free_grdon_map(t_map_list *head, t_map *map, int i);
-void		free_stuff(t_config *config, char *line, char **split);
+void		free_stuff(t_config *config, char *line);
 
 /*-----validation-----*/
 int			validate_map(t_game *game);
@@ -144,6 +145,7 @@ int			is_valid_char(char c);
 int			check_player_pos(t_map *map, int x, int y);
 
 /*-----utils-----*/
+char		*skip_spaces(char *src);
 void		trim_newlines(char **src);
 int			ft_inset(char target, char *src);
 void		print_configs(t_config *config);

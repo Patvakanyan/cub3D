@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 19:00:29 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 16:55:34 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 02:23:21 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,10 @@ void	free_split(char **split)
 	split = NULL;
 }
 
-void	free_stuff(t_config *config, char *line, char **split)
+void	free_stuff(t_config *config, char *line)
 {
 	if (line)
 		free(line);
-	if (split)
-		free_split(split);
 	if (config)
 		free_configs(config);
 	get_next_line(-1);
