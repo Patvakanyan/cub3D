@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:44:47 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 04:25:11 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:46:46 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/init.h"
+#include "../../inc/cub.h"
 
 bool	init_player(t_game *game)
 {

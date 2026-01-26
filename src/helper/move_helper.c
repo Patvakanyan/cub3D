@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 12:20:17 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 04:25:30 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:46:49 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/tools.h"
+#include "../../inc/cub.h"
 
 static void	move_strafe_left(t_game *game, t_player *player, double move_speed)
 {

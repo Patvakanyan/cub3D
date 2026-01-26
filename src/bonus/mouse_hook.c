@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 01:03:40 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 02:54:06 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:46:22 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/bonus.h"
+#include "../../inc/cub.h"
 
 int	mouse_move(int x, int y, t_game *game)
 {

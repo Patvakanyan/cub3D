@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 22:00:48 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 03:47:08 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:47:03 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "../../inc/cub.h"
 
 int	textures_not_set(t_config *c)
 {

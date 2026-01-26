@@ -6,12 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 20:11:21 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 03:30:48 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:47:58 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/raycasting.h"
-#include "../../inc/bonus.h"
+#include "../../inc/cub.h"
 
 int	key_push(int keycode, void *ptr)
 {

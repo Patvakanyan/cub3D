@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:03:30 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 03:44:14 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:42:55 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define STRUCT_H
 
 # include <stdbool.h>
-# include "./parser.h"
+# include "./cub.h"
 
 typedef struct s_config	t_config;
 

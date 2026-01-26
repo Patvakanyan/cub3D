@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 12:28:04 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 04:17:42 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:46:52 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/tools.h"
+#include "../../inc/cub.h"
 
 void	put_pixel(t_img *img, int x, int y, int color)
 {

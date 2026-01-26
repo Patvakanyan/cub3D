@@ -6,23 +6,26 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:51:08 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 03:24:13 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:45:33 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
 
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <stdbool.h>
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include "./init.h"
 # include "./raycasting.h"
 # include "./struct.h"
 # include "./tools.h"
-# include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
+# include "./bonus.h"
+# include "./parser.h"
 
 # define W 1000
 # define H 1000

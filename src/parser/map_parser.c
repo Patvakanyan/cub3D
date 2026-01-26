@@ -6,12 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:34:34 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 04:28:20 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:47:12 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
-#include "../../inc/bonus.h"
+#include "../../inc/cub.h"
 
 void	free_grdon_map(t_map_list *head, t_map *map, int i, t_door *doors)
 {
@@ -21,7 +20,6 @@ void	free_grdon_map(t_map_list *head, t_map *map, int i, t_door *doors)
 		free_map(map, i);
 	if (doors)
 		free_doors(doors);
-	ft_putstr_fd(GRDON_MAP, 2);
 }
 
 void	replace_spaces(t_map *map)
@@ -65,8 +63,8 @@ t_map	*list_to_map(t_map_list *hd, int sz, t_config *cfg)
 			return (free_grdon_map(hd, map, i, cfg->doors), NULL);
 		if (map->max_width < ft_strlen(map->map[i]))
 			map->max_width = ft_strlen(map->map[i]);
-		if (!parse_doors_line(&cfg->doors, map->map[i], i))
-			return (free_grdon_map(hd, map, i, cfg->doors), NULL);
+		if (!parse_doors_line(cfg, map->map[i], i))
+			return (free_grdon_map(hd, map, i + 1, cfg->doors), NULL);
 		temp = temp->next;
 	}
 	return (free_map_lst(hd), map->map[sz] = NULL, replace_spaces(map), map);

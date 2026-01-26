@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 02:12:37 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 02:29:13 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:47:41 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "../../inc/cub.h"
 
 int	is_player(char c)
 {
@@ -67,7 +67,10 @@ int	check_map_empty_lines(t_map_list *head)
 	while (temp)
 	{
 		if (ft_strcmp(temp->row, ""))
+		{
+			ft_putstr_fd(GRDON_MAP, 2);
 			return (1);
+		}
 		temp = temp->next;
 	}
 	return (0);

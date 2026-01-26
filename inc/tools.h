@@ -6,20 +6,14 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 16:11:28 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 04:27:10 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:42:59 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOOLS_H
 # define TOOLS_H
 
-# include "../libft/libft.h"
 # include "./cub.h"
-# include "./struct.h"
-# include "./bonus.h"
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
 
 /* ========== INPUT/EVENT FUNCTIONS ========== */
 int		key_push(int keycode, void *ptr);

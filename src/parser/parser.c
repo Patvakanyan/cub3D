@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:28:33 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/25 18:12:01 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:47:22 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "../../inc/cub.h"
 
 t_config	*parse_configs(int fd)
 {
@@ -36,5 +36,7 @@ t_config	*parse_configs(int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (!configs->map || !configs->map->map)
+		return (free_configs(configs), ft_putstr_fd(MAP_404, 2), NULL);
 	return (configs);
 }

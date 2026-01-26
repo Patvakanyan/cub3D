@@ -6,12 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 04:27:43 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:48:01 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/raycasting.h"
-#include "../../inc/bonus.h"
+#include "../../inc/cub.h"
 
 static void	pick_texture(t_ray *ray, t_door *door)
 {

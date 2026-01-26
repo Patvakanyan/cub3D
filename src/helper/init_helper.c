@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:50:53 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/24 18:15:25 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:46:43 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/init.h"
+#include "../../inc/cub.h"
 
 static void	init_texture_defaults(t_game *game)
 {

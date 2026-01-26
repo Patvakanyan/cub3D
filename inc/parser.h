@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:28:54 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 04:28:10 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:42:42 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define WRONG_ORDER_ERR "Error: configs misorder in *.cub file.\n"
 # define ALLOC_ERR "Error: bad alloc.\n"
 # define PLAYER_404 "Error: player not found.\n"
+# define MAP_404 "Error: map not found.\n"
+# define DOOR_404 "Error: map contains doors but door texture isn't defined.\n"
 # define GRDON_MAP "Error: map contains disconnected parts.\n"
 # define MAP_CLOSE_ERROR "Error: map walls arent closed.\n"
 # define NORTH_FD_ERR "Error: north texture destination unreachable.\n"
@@ -33,10 +35,7 @@
 # define EAST_FD_ERR "Error: east texture destination unreachable.\n"
 # define WEST_FD_ERR "Error: west texture destination unreachable.\n"
 
-# include "../libft/libft.h"
-# include "./struct.h"
-# include <stdlib.h>
-# include <stdio.h>
+# include "./cub.h"
 
 typedef struct s_game	t_game;
 typedef struct s_player	t_player;

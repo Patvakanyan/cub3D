@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 02:08:55 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/24 16:40:06 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:47:26 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "../../inc/cub.h"
 
 static void	init_north_south(t_player *p, char c)
 {

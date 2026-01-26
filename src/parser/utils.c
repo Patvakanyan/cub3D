@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 18:00:26 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 03:16:57 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:47:34 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "../../inc/cub.h"
 
 void	trim_newlines(char **src)
 {

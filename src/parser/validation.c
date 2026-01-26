@@ -6,12 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 20:29:02 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/25 17:40:55 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:47:48 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
-#include "../../inc/init.h"
+#include "../../inc/cub.h"
 
 int	check_file_extension(char **src, char *target)
 {
@@ -62,8 +61,10 @@ int	flood_fill(t_map *map, int x, int y)
 
 int	validate_map(t_game *game)
 {
-	t_map		*copy;
+	t_map	*copy;
 
+	if (!game->config->map)
+		return (0);
 	copy = copy_map(game->config->map);
 	if (!copy)
 		return (0);

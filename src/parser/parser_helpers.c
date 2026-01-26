@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:31:07 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 03:49:08 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:47:17 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "../../inc/cub.h"
 
 int	safe_place(t_config *config, char **src, char config_name)
 {

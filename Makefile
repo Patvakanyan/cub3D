@@ -1,48 +1,48 @@
-NAME	=	cub3D
+NAME		=	cub3D
 
-CC = cc
-CFLAGS	= 	-Wall -Wextra -Werror -g3
-LDFLAGS	= 	-lreadline -lncurses $(MLX_LIB)
+CC			=	cc
+CFLAGS		=	-Wall -Wextra -Werror -g3
+LDFLAGS		=	-lreadline -lncurses $(MLX_LIB)
 
-MLX_DIR = ./minilibx-linux
-MLX_INC = -I$(MLX_DIR)
-MLX_LIB = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
+MLX_DIR		=	./minilibx-linux
+MLX_INC		=	-I$(MLX_DIR)
+MLX_LIB		=	-L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 
-INC_DIR = ./inc
-INCLUDES = -I$(INC_DIR) $(MLX_INC)
+INC_DIR		=	./inc
+INCLUDES	=	-I$(INC_DIR) $(MLX_INC)
 
-SRCS	=	./src/main.c \
-			./src/helper/free_helper.c \
-			./src/helper/hook_helper.c \
-			./src/helper/init.c \
-			./src/helper/init_helper.c \
-			./src/helper/move_helper.c \
-			./src/helper/raycasting_helper.c \
-			./src/bonus/mouse_hook.c \
-			./src/bonus/doors.c \
-			./src/bonus/minimap.c \
-			./src/raycasting/loop.c \
-			./src/raycasting/raycasting.c \
-			./src/parser/checkers.c \
-			./src/parser/dealloc_funcs.c \
-			./src/parser/init.c \
-			./src/parser/map_parser.c \
-			./src/parser/parser_helpers.c \
-			./src/parser/parser.c \
-			./src/parser/player_init.c \
-			./src/parser/utils.c \
-			./src/parser/validation_checkers.c \
-			./src/parser/validation_helpers.c \
-			./src/parser/validation.c
+SRCS		=	./src/main.c \
+				./src/helper/free_helper.c \
+				./src/helper/hook_helper.c \
+				./src/helper/init.c \
+				./src/helper/init_helper.c \
+				./src/helper/move_helper.c \
+				./src/helper/raycasting_helper.c \
+				./src/bonus/mouse_hook.c \
+				./src/bonus/doors.c \
+				./src/bonus/minimap.c \
+				./src/bonus/spirit.c \
+				./src/raycasting/loop.c \
+				./src/raycasting/raycasting.c \
+				./src/parser/checkers.c \
+				./src/parser/dealloc_funcs.c \
+				./src/parser/init.c \
+				./src/parser/map_parser.c \
+				./src/parser/parser_helpers.c \
+				./src/parser/parser.c \
+				./src/parser/player_init.c \
+				./src/parser/utils.c \
+				./src/parser/validation_checkers.c \
+				./src/parser/validation_helpers.c \
+				./src/parser/validation.c
 
-OBJS	= 	$(SRCS:%.c=%.o)
+OBJS		=	$(SRCS:%.c=%.o)
 
-LIBFT_DIR	= 	./libft
-LIBFT_A		= 	$(LIBFT_DIR)/libft.a
+LIBFT_DIR	=	./libft
+LIBFT_A		=	$(LIBFT_DIR)/libft.a
 
 
-
-all: $(LIBFT_A)  $(NAME)
+all: $(LIBFT_A) $(NAME)
 
 $(LIBFT_A):
 	$(MAKE) -C $(LIBFT_DIR)

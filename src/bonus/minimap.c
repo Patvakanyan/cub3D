@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 01:19:55 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 03:22:30 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:46:20 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/bonus.h"
+#include "../../inc/cub.h"
 
 static void	draw_cell(t_game *game, int x, int y, int clr)
 {

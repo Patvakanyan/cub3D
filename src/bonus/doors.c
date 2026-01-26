@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 02:01:17 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 04:26:32 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:46:15 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/bonus.h"
+#include "../../inc/cub.h"
 
 int	can_move(t_game *game, double new_x, double new_y)
 {
@@ -60,7 +60,7 @@ int	add_door(t_door **head, int x, int y)
 	return (1);
 }
 
-int	parse_doors_line(t_door **doors, const char *row, int y)
+int	parse_doors_line(t_config *config, const char *row, int y)
 {
 	int	x;
 
@@ -71,7 +71,9 @@ int	parse_doors_line(t_door **doors, const char *row, int y)
 	{
 		if (row[x] == 'D')
 		{
-			if (!add_door(doors, x, y))
+			if (!config->door)
+				return (ft_putstr_fd(DOOR_404, 2), 0);
+			if (!add_door(&config->doors, x, y))
 				return (0);
 		}
 		++x;

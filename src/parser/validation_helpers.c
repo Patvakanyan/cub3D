@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 19:15:08 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/25 18:58:13 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:47:45 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "../../inc/cub.h"
 
 static int	check_player_count(int player_count)
 {

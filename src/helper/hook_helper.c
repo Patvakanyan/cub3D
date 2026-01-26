@@ -6,11 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:49:06 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 03:06:11 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:46:39 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/tools.h"
+#include "../../inc/cub.h"
 
 int	close_game(t_game *game)
 {
