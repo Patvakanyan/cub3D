@@ -1,0 +1,13 @@
+SO ./textures/bordo.xpm
+EA ./textures/gayush.xpm
+NO ./textures/kargin.xpm
+WE ./textures/lusamut.xpm
+SP ./textures/character.xpm
+
+F 255,171,0
+
+
+C 21,1,111
+111111111111111111111
+1W                  1
+111111111111111111111

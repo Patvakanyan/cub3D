@@ -6,11 +6,25 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:57:36 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 20:49:08 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 21:21:10 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub.h"
+
+static void	free_bonus_imgs(t_game *game)
+{
+	if (game->texture[4].img != NULL)
+	{
+		mlx_destroy_image(game->mlx, game->texture[4].img);
+		game->texture[4].img = NULL;
+	}
+	if (game->texture[5].img != NULL)
+	{
+		mlx_destroy_image(game->mlx, game->texture[5].img);
+		game->texture[5].img = NULL;
+	}
+}
 
 void	free_doors(t_door *head)
 {
@@ -51,13 +65,14 @@ void	free_game(t_game *game)
 		return ;
 	if (game->mlx && game->win)
 		mlx_destroy_window(game->mlx, game->win);
-	while (++i < 6)
+	while (++i < 4)
 	{
 		if (game->texture[i].img)
 		{
 			mlx_destroy_image(game->mlx, game->texture[i].img);
 			game->texture[i].img = NULL;
 		}
+		free_bonus_imgs(game);
 	}
 	if (game->mlx)
 	{
