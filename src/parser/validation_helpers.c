@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 19:15:08 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 15:47:45 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 21:54:07 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	find_player_pos(t_game *game, t_map *map)
 		while (++coords.x < ft_strlen(map->map[coords.y]))
 		{
 			if (!is_valid_char(map->map[coords.y][coords.x]))
-				return (0);
+				return (ft_putstr_fd(INVALID_CHAR, 2), 0);
 			if (is_player(map->map[coords.y][coords.x]))
 			{
 				if (check_player_pos(map, coords.x, coords.y))

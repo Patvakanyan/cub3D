@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:28:54 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 20:53:54 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 21:53:57 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define COLOR_ERR_1 "Error: wrong count for color argument.\n"
 # define COLOR_ERR_2 "Error: wrong color number found.\n"
 # define HINT "Hint: use a number in range [0, 255] for each (r, g, b).\n"
+# define INVALID_CHAR "Error: invalid char in map found.\n"
 # define DUP_ERROR "Error: duplicate of config `"
 # define WRONG_CONFIG "Error: unexpected config found `"
 # define EXTENSION_ERR "Error: given file doesn't have extension "

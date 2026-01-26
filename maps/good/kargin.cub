@@ -1,9 +1,9 @@
-SO ./textures/bordo.xpm
-EA ./textures/gayush.xpm
-NO ./textures/kargin.xpm
-WE ./textures/lusamut.xpm
-DO ./textures/door.xpm
-SP ./textures/character.xpm
+SO textures/kargin/south.xpm
+EA textures/kargin/east.xpm
+NO textures/kargin/north.xpm
+WE textures/kargin/west.xpm
+DO textures/kargin/door.xpm
+SP textures/kargin/character.xpm
 
 F 255,171,0
 C 21,1,148
