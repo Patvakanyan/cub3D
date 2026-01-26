@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:28:54 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 03:45:15 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:28:10 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void		free_split(char **split);
 void		free_map(t_map *map, int size);
 void		free_map_lst(t_map_list *head);
 void		free_configs(t_config *configs);
-void		free_grdon_map(t_map_list *head, t_map *map, int , t_door *doors);
+void		free_grdon_map(t_map_list *head, t_map *map, int i, t_door *doors);
 void		free_stuff(t_config *config, char *line, char **split);
 
 /*-----validation-----*/

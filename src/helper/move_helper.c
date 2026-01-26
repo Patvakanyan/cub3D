@@ -6,35 +6,11 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 12:20:17 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 03:29:17 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:25:30 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/tools.h"
-
-static int	can_move(t_game *game, double new_x, double new_y)
-{
-	int		map_x;
-	int		map_y;
-	char	cell;
-	t_door	*door;
-
-	map_x = (int)new_x;
-	map_y = (int)new_y;
-	cell = game->config->map->map[map_y][map_x];
-	if (cell == '1')
-		return (0);
-	if (!game->config->doors)
-		return (1);
-	door = game->config->doors;
-	while (door)
-	{
-		if (door->x == map_x && door->y == map_y && !door->open)
-			return (0);
-		door = door->next;
-	}
-	return (1);
-}
 
 static void	move_strafe_left(t_game *game, t_player *player, double move_speed)
 {

@@ -6,15 +6,40 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 02:01:17 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 04:14:46 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:26:32 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/bonus.h"
 
+int	can_move(t_game *game, double new_x, double new_y)
+{
+	int		map_x;
+	int		map_y;
+	char	cell;
+	t_door	*door;
+
+	map_x = (int)new_x;
+	map_y = (int)new_y;
+	cell = game->config->map->map[map_y][map_x];
+	if (cell == '1')
+		return (0);
+	if (!game->config->doors)
+		return (1);
+	door = game->config->doors;
+	while (door)
+	{
+		if (door->x == map_x && door->y == map_y && !door->open)
+			return (0);
+		door = door->next;
+	}
+	return (1);
+}
+
 int	add_door(t_door **head, int x, int y)
 {
 	t_door	*new_door;
+	t_door	*tmp;
 
 	new_door = malloc(sizeof(t_door));
 	if (!new_door)
@@ -27,7 +52,7 @@ int	add_door(t_door **head, int x, int y)
 		*head = new_door;
 	else
 	{
-		t_door *tmp = *head;
+		tmp = *head;
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new_door;

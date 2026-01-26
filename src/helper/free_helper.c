@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:57:36 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 04:11:19 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:27:27 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	free_doors(t_door *head)
 {
-	t_door *tmp;
+	t_door	*tmp;
+
 	while (head)
 	{
 		tmp = head->next;

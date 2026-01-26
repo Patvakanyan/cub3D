@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:49:32 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 03:20:59 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:23:28 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	main(int argc, char **argv)
 			return (close(fd), free_configs(game.config), 1);
 		if (!init_game(&game))
 			return (close(fd), free_game(&game), 1);
-		// print_configs(game.config);
 		start_game_loop(&game);
 	}
 	return (ft_putstr_fd(FD_ERROR, 2), 1);

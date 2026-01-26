@@ -6,19 +6,19 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:34:34 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 03:01:54 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:28:20 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parser.h"
 #include "../../inc/bonus.h"
 
-void	free_grdon_map(t_map_list *head, t_map *map, int ind, t_door *doors)
+void	free_grdon_map(t_map_list *head, t_map *map, int i, t_door *doors)
 {
 	if (head)
 		free_map_lst(head);
 	if (map)
-		free_map(map, ind);
+		free_map(map, i);
 	if (doors)
 		free_doors(doors);
 	ft_putstr_fd(GRDON_MAP, 2);

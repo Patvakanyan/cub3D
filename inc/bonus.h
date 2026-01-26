@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 02:49:25 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 02:54:19 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:27:47 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	render_minimap(t_game *game);
 /*-----doors init-----*/
 int		add_door(t_door **head, int x, int y);
 void	interact_door(t_game *game);
+int		can_move(t_game *game, double new_x, double new_y);
 int		parse_doors_line(t_door **doors, const char *row, int y);
 
 /*-----dealloc funtions-----*/
 void	free_doors(t_door *head);
-
 
 #endif

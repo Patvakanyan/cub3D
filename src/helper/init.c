@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:44:47 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 03:46:02 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:25:11 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,21 @@ static bool	init_img(t_game *game)
 	game->texture[0].img = mlx_xpm_file_to_image(game->mlx,
 			game->config->west, &game->texture[0].width,
 			&game->texture[0].height);
-	if (!game->texture[0].img)
-		return (false);
 	game->texture[1].img = mlx_xpm_file_to_image(game->mlx,
 			game->config->east, &game->texture[1].width,
 			&game->texture[1].height);
-	if (!game->texture[1].img)
-		return (false);
 	game->texture[2].img = mlx_xpm_file_to_image(game->mlx,
 			game->config->north, &game->texture[2].width,
 			&game->texture[2].height);
-	if (!game->texture[2].img)
-		return (false);
 	game->texture[3].img = mlx_xpm_file_to_image(game->mlx,
 			game->config->south, &game->texture[3].width,
 			&game->texture[3].height);
-	if (!game->texture[3].img)
-		return (false);
 	game->texture[4].img = mlx_xpm_file_to_image(game->mlx,
 			game->config->door, &game->texture[4].width,
 			&game->texture[4].height);
-	if (!game->texture[4].img)
+	if (!game->texture[0].img || !game->texture[1].img
+		|| !game->texture[2].img || !game->texture[3].img
+		|| !game->texture[4].img)
 		return (false);
 	return (set_texture_properties(game));
 }

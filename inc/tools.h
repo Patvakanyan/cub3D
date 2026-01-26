@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 16:11:28 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 02:53:43 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:27:10 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/libft.h"
 # include "./cub.h"
 # include "./struct.h"
+# include "./bonus.h"
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>

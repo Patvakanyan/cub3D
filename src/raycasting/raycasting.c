@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 04:21:54 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/26 04:27:43 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	draw_column(t_game *g, t_ray *r, int x)
 
 	door = get_door_at(g, r->map_x, r->map_y);
 	if (door && door->open)
-			return ;
+		return ;
 	pick_texture(r, door);
 	if (r->side == 0)
 	{
