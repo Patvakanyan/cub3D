@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 18:15:19 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 20:19:15 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:22:29 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,17 @@ void	draw_spirit_pixels(t_game *g, t_draw_spirit d)
 		if ((color & 0x00FFFFFF) != 0)
 			put_pixel(&g->img, d.x, y, color);
 		y++;
+	}
+}
+
+void	draw_sprites(t_game *game)
+{
+	t_spirit	*spirits;
+
+	spirits = game->config->spirits;
+	while (spirits)
+	{
+		draw_sprite(game, spirits);
+		spirits = spirits->next;
 	}
 }

@@ -6,20 +6,35 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:31:07 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/27 02:40:25 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:28:05 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub.h"
 
-char	*skip_spaces(char *src)
+int	are_valid_nums(char **nums)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	*num;
 
+	if (split_len(nums) != 3)
+		return (ft_putstr_fd(COLOR_ERR_1, 2), 0);
 	i = 0;
-	while (src[i] && (src[i] == ' ' || src[i] == '\t'))
+	while (nums[i])
+	{
+		j = 0;
+		trim_newlines(&nums[i]);
+		num = skip_spaces(nums[i]);
+		while (num[j])
+		{
+			if ((num[j] != ' ' && num[j] != '\t') && !ft_isdigit(num[j]))
+				return (ft_putstr_fd(COLOR_ERR_2, 2), 0);
+			++j;
+		}
 		++i;
-	return (src + i);
+	}
+	return (1);
 }
 
 static int	parse_colors(char *src, int *clr)
@@ -34,9 +49,9 @@ static int	parse_colors(char *src, int *clr)
 	src = skip_spaces(src);
 	nums = ft_split(src, ',');
 	if (!nums)
-		return (0);
-	if (split_len(nums) != 3)
-		return (ft_putstr_fd(COLOR_ERR_1, 2), free_split(nums), 0);
+		return (ft_putstr_fd(ALLOC_ERR, 2), 0);
+	if (!are_valid_nums(nums))
+		return (free_split(nums), 0);
 	i = 0;
 	while (i < 3)
 	{
@@ -122,6 +137,6 @@ int	place_config(t_config *configs, char *src)
 		return (safe_place(configs, spl, 'C'));
 	if (check_first_arg(spl[0]))
 		return (ft_putstr_fd(DUP_ERROR, 2), ft_putstr_fd(spl[0], 2),
-				ft_putstr_fd("'\n", 2), free_split(spl), 0);
+			ft_putstr_fd("'\n", 2), free_split(spl), 0);
 	return (free_split(spl), 0);
 }

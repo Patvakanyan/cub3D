@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 02:49:25 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 20:33:27 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:22:19 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,15 @@
 
 # include "./cub.h"
 
-# define MINI_SIZE 5
-# define PLAYER_SIZE 3
+# define MINI_SIZE 7
+# define PLAYER_SIZE 5
+
+# define MINI_WALL_CLR 0xFFFFFF
+# define MINI_EMPTY_CLR 0x000000
+# define MINI_DOOR_CLR 0x00AAFF
+# define MINI_ODOR_CLR 0x003366
+# define MINI_SPRITE_CLR 0x00FF00
+# define MINI_PLAYER_CLR 0xFF0000
 
 typedef struct s_game	t_game;
 typedef struct s_door	t_door;
@@ -67,6 +74,8 @@ int		parse_bonus_line(t_config *config, char *row, int y);
 /*-----spirits-----*/
 void	update_spirits(t_game *game);
 void	render_spirits(t_game *game);
+void	draw_sprites(t_game *game);
+void	draw_sprite(t_game *game, t_spirit *s);
 int		add_spirit(t_spirit **head, int x, int y);
 int		spirit_can_see_player(t_game *g, t_spirit *s);
 void	move_spirit_towards_player(t_game *game, t_spirit *s);

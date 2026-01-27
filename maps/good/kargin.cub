@@ -5,7 +5,7 @@ NO             textures/kargin/north.xpm
 DO textures/kargin/door.xpm
 SP textures/kargin/character.xpm
 
-				F 255,                   171, 0
+				F    255,                   171, 0
 C 21       ,   1,				148
 
 1111111111111111111111111111111111111111

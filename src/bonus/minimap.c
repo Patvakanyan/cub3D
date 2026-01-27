@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/26 01:19:55 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 15:46:20 by rbarkhud         ###   ########.fr       */
+/*   Created: 2026/01/27 17:17:03 by rbarkhud          #+#    #+#             */
+/*   Updated: 2026/01/27 17:22:13 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static void	draw_cell(t_game *game, int x, int y, int clr)
 		j = 0;
 		while (j < MINI_SIZE)
 		{
-			mlx_pixel_put(game->mlx, game->win, start_x + i, start_y + j, clr);
+			mlx_pixel_put(game->mlx, game->win,
+				start_x + i, start_y + j, clr);
 			++j;
 		}
 		++i;
@@ -49,14 +50,38 @@ static void	draw_player(t_game *game)
 		j = -PLAYER_SIZE;
 		while (j <= PLAYER_SIZE)
 		{
-			mlx_pixel_put(game->mlx, game->win, px + i, py + j, 0xFF0000);
+			mlx_pixel_put(game->mlx, game->win,
+				px + i, py + j, MINI_PLAYER_CLR);
 			++j;
 		}
 		++i;
 	}
 }
 
-void	render_minimap(t_game *game)
+void	draw_sprite(t_game *game, t_spirit *s)
+{
+	int	x;
+	int	y;
+	int	i;
+	int	j;
+
+	x = (int)(s->x * MINI_SIZE);
+	y = (int)(s->y * MINI_SIZE);
+	i = -2;
+	while (i <= 2)
+	{
+		j = -2;
+		while (j <= 2)
+		{
+			mlx_pixel_put(game->mlx, game->win,
+				x + i, y + j, MINI_SPRITE_CLR);
+			++j;
+		}
+		++i;
+	}
+}
+
+static void	draw_map(t_game *game)
 {
 	int		x;
 	int		y;
@@ -70,12 +95,22 @@ void	render_minimap(t_game *game)
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
-				draw_cell(game, x, y, 0xFFFFFF);
+				draw_cell(game, x, y, MINI_WALL_CLR);
+			else if (map[y][x] == 'D')
+				draw_cell(game, x, y, MINI_DOOR_CLR);
+			else if (map[y][x] == 'O')
+				draw_cell(game, x, y, MINI_ODOR_CLR);
 			else
-				draw_cell(game, x, y, 0x000000);
-			x++;
+				draw_cell(game, x, y, MINI_EMPTY_CLR);
+			++x;
 		}
 		++y;
 	}
+}
+
+void	render_minimap(t_game *game)
+{
+	draw_map(game);
+	draw_sprites(game);
 	draw_player(game);
 }

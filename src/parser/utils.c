@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 18:00:26 by rbarkhud          #+#    #+#             */
-/*   Updated: 2026/01/26 15:47:34 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:28:14 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,14 @@ void	print_configs(t_config *config)
 		printf("door: x %d, y %d\n", doors->x, doors->y);
 		doors = doors->next;
 	}
+}
+
+char	*skip_spaces(char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] && (src[i] == ' ' || src[i] == '\t'))
+		++i;
+	return (src + i);
 }

@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:49:06 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 15:46:39 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:58:00 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,33 @@ static void	rotate_player(t_player *player, char *direction)
 	double	old_plane_x;
 
 	if (!ft_strcmp(direction, "right"))
-		player->rot_speed = 0.09;
+		player->rot_speed = 0.05;
 	else
-		player->rot_speed = -0.09;
+		player->rot_speed = -0.05;
 	old_dir_x = player->dir_x;
-	player->dir_x = player->dir_x * cos(player->rot_speed) - player->dir_y
-		* sin(player->rot_speed);
-	player->dir_y = old_dir_x * sin(player->rot_speed) + player->dir_y
-		* cos(player->rot_speed);
+	player->dir_x = player->dir_x
+		* cos(player->rot_speed) - player->dir_y * sin(player->rot_speed);
+	player->dir_y = old_dir_x
+		* sin(player->rot_speed) + player->dir_y * cos(player->rot_speed);
 	old_plane_x = player->plane_x;
-	player->plane_x = player->plane_x * cos(player->rot_speed) - player->plane_y
-		* sin(player->rot_speed);
-	player->plane_y = old_plane_x * sin(player->rot_speed) + player->plane_y
-		* cos(player->rot_speed);
+	player->plane_x = player->plane_x
+		* cos(player->rot_speed) - player->plane_y * sin(player->rot_speed);
+	player->plane_y = old_plane_x
+		* sin(player->rot_speed) + player->plane_y * cos(player->rot_speed);
 }
 
-void	move_character(t_game *game, int direction)
+void	handle_movement(t_game *game)
 {
-	if (direction != -1 && direction == ROTATE_LEFT)
+	if (game->keys.left)
 		rotate_player(&game->player, "left");
-	if (direction != -1 && direction == ROTATE_RIGHT)
+	if (game->keys.right)
 		rotate_player(&game->player, "right");
-	if (direction != -1 && direction == MOVE_LEFT)
+	if (game->keys.a)
 		move_player(game, 'A');
-	if (direction != -1 && direction == MOVE_RIGHT)
+	if (game->keys.d)
 		move_player(game, 'D');
-	if (direction != -1 && direction == MOVE_UP)
+	if (game->keys.w)
 		move_player(game, 'W');
-	if (direction != -1 && direction == MOVE_DOWN)
+	if (game->keys.s)
 		move_player(game, 'S');
 }

@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:28:43 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/27 02:40:57 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:07:52 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,27 +95,29 @@ void	draw_column(t_game *g, t_ray *r, int x)
 
 int	render(void *ptr)
 {
-	int		x;
-	t_ray	r;
-	t_game	*game;
+	int				x;
+	t_ray			r;
+	t_game			*game;
+	struct timeval	current_time;
+	long			current_ms;
 
-	x = 0;
+	x = -1;
 	game = (t_game *)ptr;
+	gettimeofday(&current_time, NULL);
+	current_ms = current_time.tv_sec * 1000 + current_time.tv_usec / 1000;
+	if (current_ms - game->last_frame_time < (1000 / TARGET_FPS))
+		return (0);
+	game->last_frame_time = current_ms;
 	ft_memset(game->img.addr, 0, H * game->img.line_len);
-	while (x < W)
+	while (++x < W)
 	{
-		game->zbuffer[x] = 1e30;
-		init_ray(game, &r, x);
-		step_and_side(game, &r);
+		(init_ray(game, &r, x), step_and_side(game, &r));
 		dda(game, &r);
 		draw_column(game, &r, x);
-		x++;
+		game->zbuffer[x] = r.perp_dist;
 	}
 	mlx_clear_window(game->mlx, game->win);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
-	move_character(game, game->move_flag);
-	update_spirits(game);
-	render_spirits(game);
-	render_minimap(game);
-	return (0);
+	(handle_movement(game), update_spirits(game), render_spirits(game));
+	return (render_minimap(game), 0);
 }

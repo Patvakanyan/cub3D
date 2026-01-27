@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:50:53 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 21:19:53 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:03:10 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ void	set_game_defaults(t_game *game, int fd)
 	game->player.plane_x = 0.0;
 	game->player.plane_y = 0.66;
 	game->fd = fd;
-	game->move_flag = -1;
+	game->move_flag = MOVE_NONE;
+	game->keys.w = 0;
+	game->keys.a = 0;
+	game->keys.s = 0;
+	game->keys.d = 0;
+	game->keys.left = 0;
+	game->keys.right = 0;
+	game->last_frame_time = 0;
 	init_texture_defaults(game);
 }

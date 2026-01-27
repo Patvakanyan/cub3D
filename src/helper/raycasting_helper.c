@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 12:28:04 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 15:46:52 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:28:29 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ void	dda(t_game *game, t_ray *ray)
 		if (game->config->map->map[ray->map_y][ray->map_x] != '0')
 			ray->hit = 1;
 	}
+	if (ray->side == 0)
+		ray->perp_dist = (ray->map_x - game->player.x
+				+ (1 - ray->step_x) / 2.0) / ray->raydir_x;
+	else
+		ray->perp_dist = (ray->map_y - game->player.y
+				+ (1 - ray->step_y) / 2.0) / ray->raydir_y;
 }
 
 int	get_tex_color(t_img *tex, int tex_x, int tex_y)

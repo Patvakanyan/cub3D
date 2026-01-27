@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:44:47 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 20:32:36 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:02:53 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ bool	init_player(t_game *game)
 {
 	if (!game)
 		return (false);
-	game->player.move_speed = 0.1;
-	game->player.rot_speed = 0.1;
+	game->player.move_speed = 0.05;
+	game->player.rot_speed = 0.05;
 	return (true);
 }
 

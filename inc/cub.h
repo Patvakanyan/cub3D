@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:51:08 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 17:53:18 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:07:57 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@
 # define KEY_D 100
 # define KEY_E 101
 # define TEX 64
+# define TARGET_FPS 60
 
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <stdbool.h>
+# include <sys/time.h>
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include "./init.h"
@@ -39,6 +41,6 @@
 # include "./bonus.h"
 # include "./parser.h"
 
-int		close_game(t_game *game);
+int	close_game(t_game *game);
 
 #endif

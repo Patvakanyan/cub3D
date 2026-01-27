@@ -6,7 +6,7 @@
 /*   By: rbarkhud <rbarkhud@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 20:11:21 by apatvaka          #+#    #+#             */
-/*   Updated: 2026/01/26 15:47:58 by rbarkhud         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:03:36 by rbarkhud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int	key_push(int keycode, void *ptr)
 	if (keycode == KEY_ESC)
 		close_game(game);
 	else if (keycode == KEY_LEFT)
-		game->move_flag = ROTATE_LEFT;
+		game->keys.left = 1;
 	else if (keycode == KEY_RIGHT)
-		game->move_flag = ROTATE_RIGHT;
+		game->keys.right = 1;
 	else if (keycode == KEY_A)
-		game->move_flag = MOVE_LEFT;
+		game->keys.a = 1;
 	else if (keycode == KEY_D)
-		game->move_flag = MOVE_RIGHT;
+		game->keys.d = 1;
 	else if (keycode == KEY_S)
-		game->move_flag = MOVE_DOWN;
+		game->keys.s = 1;
 	else if (keycode == KEY_W)
-		game->move_flag = MOVE_UP;
+		game->keys.w = 1;
 	else if (keycode == KEY_E)
 		interact_door(game);
 	return (0);
@@ -42,22 +42,23 @@ int	key_release(int keycode, void *ptr)
 
 	game = (t_game *)ptr;
 	if (keycode == KEY_LEFT)
-		game->move_flag = -1;
+		game->keys.left = 0;
 	else if (keycode == KEY_RIGHT)
-		game->move_flag = -1;
+		game->keys.right = 0;
 	else if (keycode == KEY_A)
-		game->move_flag = -1;
+		game->keys.a = 0;
 	else if (keycode == KEY_D)
-		game->move_flag = -1;
+		game->keys.d = 0;
 	else if (keycode == KEY_S)
-		game->move_flag = -1;
+		game->keys.s = 0;
 	else if (keycode == KEY_W)
-		game->move_flag = -1;
+		game->keys.w = 0;
 	return (1);
 }
 
 void	start_game_loop(t_game *game)
 {
+	mlx_do_key_autorepeatoff(game->mlx);
 	mlx_hook(game->win, 2, 1L << 0, key_push, game);
 	mlx_hook(game->win, 3, 1L << 1, key_release, game);
 	mlx_hook(game->win, 17, 0L, close_game, game);
